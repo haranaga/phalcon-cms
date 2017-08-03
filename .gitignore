@@ -1,0 +1,10 @@
+cache/*
+logs/*
+!.gitkeep
+.sass-cache
+.sync-config.cson
+public/upload/*
+app/config/config.php
+vendor/*
+.DS_Store
+*.css.map
