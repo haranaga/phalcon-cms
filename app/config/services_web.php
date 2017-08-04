@@ -12,9 +12,10 @@ use Phalcon\Flash\Direct as Flash;
  * Registering a router
  */
 $di->setShared('router', function () {
-    $router = new Router();
+    $router = new Router(false);
 
     $router->setDefaultModule('frontend');
+    $router->removeExtraSlashes(true);
 
     return $router;
 });
@@ -56,8 +57,30 @@ $di->set('flash', function () {
 /**
 * Set the default namespace for dispatcher
 */
-$di->setShared('dispatcher', function() {
+$di->setShared('dispatcher', function () {
     $dispatcher = new Dispatcher();
+    $eventsManager = $this->getShared('eventsManager');
+
+    // error handling
+    $eventsManager->attach(
+        "dispatch:beforeException",
+        function ($event, $dispatcher, $exception) {
+            switch ($exception->getCode()) {
+                case Dispatcher::EXCEPTION_HANDLER_NOT_FOUND:
+                case Dispatcher::EXCEPTION_ACTION_NOT_FOUND:
+                    $dispatcher->forward(['controller' => 'index', 'action' => 'notfound', ]);
+                    return false;
+                    break;
+                default:
+                    $dispatcher->forward(['controller' => 'index', 'action' => 'error', ]);
+                    return false;
+                    break;
+            }
+        }
+    );
+
     $dispatcher->setDefaultNamespace('Cms\Modules\Frontend\Controllers');
+    $dispatcher->setEventsManager($eventsManager);
+
     return $dispatcher;
 });
