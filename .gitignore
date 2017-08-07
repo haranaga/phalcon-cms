@@ -8,3 +8,9 @@ app/config/config.php
 vendor/*
 .DS_Store
 *.css.map
+public/webtools.config.php
+public/webtools.php
+public/css/codemirror.css
+public/css/webtools.css
+public/js/webtools.js
+public/js/codemirror.js
