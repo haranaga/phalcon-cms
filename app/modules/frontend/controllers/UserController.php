@@ -2,7 +2,7 @@
 
 namespace Cms\Modules\Frontend\Controllers;
 
-class MemberController extends ControllerBase
+class UserController extends ControllerBase
 {
     public function indexAction()
     {
