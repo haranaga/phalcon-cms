@@ -1,7 +1,6 @@
-<div class="page-header">
-    <h1>Frontend!</h1>
-</div>
-
-<p>You're now flying with Phalcon. Great things are about to happen!</p>
-
-<p>This page is located at <code>views/index/index.volt</code></p>
+<section>
+    <ul>
+        <li><a href="_frontend/member/signup/">Sign Up</a></li>
+        <li><a href="_frontend/member/signin/">Sign In</a></li>
+    </ul>
+</section>

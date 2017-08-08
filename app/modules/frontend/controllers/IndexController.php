@@ -6,6 +6,7 @@ class IndexController extends ControllerBase
 {
     public function indexAction()
     {
+        $this->tag->setTitle('Phalcon-CMS index');
     }
 
     public function notfoundAction()
