@@ -1,0 +1,14 @@
+{
+  "name": "phalcon-cms",
+  "homepage": "https://github.com/haranaga/phalcon-cms",
+  "authors": [
+    "Munekazu Haranaga <haranaga@puzzle-ring.jp>"
+  ],
+  "description": "Contents management system powerd by Phalcon PHP",
+  "main": "",
+  "license": "MIT",
+  "dependencies": {
+    "autosize": "^4.0.0",
+    "datetimepicker": "^2.5.4"
+  }
+}
