@@ -7,6 +7,18 @@ use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Mvc\View;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Flash\Direct as Flash;
+use Phalcon\Http\Response\Cookies;
+use Phalcon\Crypt;
+
+use Cms\Assets;
+use Cms\CookieSession;
+
+/**
+ * http host name
+ */
+$di->setShared('host', function () {
+    return $this->getRequest()->getHttpHost();
+});
 
 /**
  * Registering a router
@@ -25,9 +37,9 @@ $di->setShared('router', function () {
  */
 $di->setShared('url', function () {
     $config = $this->getConfig();
-
+    $host = $this->getShared('host');
     $url = new UrlResolver();
-    $url->setBaseUri($config->application->baseUri);
+    $url->setBaseUri($host.$config->application->baseUri);
 
     return $url;
 });
@@ -35,12 +47,12 @@ $di->setShared('url', function () {
 /**
  * Starts the session the first time some component requests the session service
  */
-$di->setShared('session', function () {
-    $session = new SessionAdapter();
-    $session->start();
-
-    return $session;
-});
+// $di->setShared('session', function () {
+//     $session = new SessionAdapter();
+//     $session->start();
+//
+//     return $session;
+// });
 
 /**
  * Register the session flash service with the Twitter Bootstrap classes
@@ -52,6 +64,23 @@ $di->set('flash', function () {
         'notice'  => 'alert alert-info',
         'warning' => 'alert alert-warning'
     ]);
+});
+
+$di->setShared('cookies', function () {
+    $cookies = new Cookies();
+    $cookies->useEncryption(true);
+    return $cookies;
+});
+
+$di->setShared('crypt', function () {
+    $crypt = new Crypt();
+    $crypt->setKey($this->getConfig()->crypt);
+    return $crypt;
+});
+
+$di->setShared('assets', function () {
+    $assets = new Assets();
+    return $assets;
 });
 
 /**
@@ -83,4 +112,15 @@ $di->setShared('dispatcher', function () {
     $dispatcher->setEventsManager($eventsManager);
 
     return $dispatcher;
+});
+
+/**
+ * Default cookie
+ * @var CookieSession
+ */
+$di->setShared('cookieSession', function () {
+    $cs = new CookieSession();
+    $cs->setKey($this->getConfig()->cookie);
+    $cs->setExpire(86400*365*3); // 3year
+    return $cs;
 });

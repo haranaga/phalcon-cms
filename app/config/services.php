@@ -6,12 +6,6 @@ use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Db\Adapter\Pdo\Mysql;
 
 /**
- * http host name
- */
-$di->setShared('host', function () {
-    return $this->getRequest()->getHttpHost();
-});
-/**
  * Shared configuration service
  */
 $di->setShared('config', function () {
