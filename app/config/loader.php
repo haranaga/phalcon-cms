@@ -9,7 +9,6 @@ $loader = new Loader();
  */
 $loader->registerNamespaces([
     'Cms\Models' => APP_PATH . '/common/models/',
-    'Cms\Forms' => APP_PATH . '/common/forms/',
     'Cms'        => APP_PATH . '/common/library/',
     'Phalcon' => BASE_PATH . '/vendor/phalcon/incubator/Library/Phalcon/',
 ]);

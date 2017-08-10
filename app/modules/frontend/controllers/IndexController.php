@@ -7,6 +7,7 @@ class IndexController extends ControllerBase
     public function indexAction()
     {
         $this->tag->setTitle('Phalcon-CMS index');
+        $this->cookieSession->set('hoge', '1234');
     }
 
     public function notfoundAction()

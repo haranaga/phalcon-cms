@@ -1,0 +1,14 @@
+{
+  "name": "phalcon-cms",
+  "homepage": "https://github.com/haranaga/phalcon-cms",
+  "authors": [
+    "Munekazu Haranaga <haranaga@puzzle-ring.jp>"
+  ],
+  "description": "cms powered by phalcon php",
+  "main": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "vue": "^2.4.2"
+  }
+}

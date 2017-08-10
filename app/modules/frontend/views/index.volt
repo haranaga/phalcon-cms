@@ -7,6 +7,9 @@
 
         {{get_title()}}
         <link rel="stylesheet" href="http://www.hard-ui.com/build/hard-ui.min.css">
+
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
     </head>
     <body>
         <div class="hd-wrapper">

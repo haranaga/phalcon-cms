@@ -14,3 +14,4 @@ public/css/codemirror.css
 public/css/webtools.css
 public/js/webtools.js
 public/js/codemirror.js
+public/components/*
