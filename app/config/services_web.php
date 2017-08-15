@@ -14,6 +14,12 @@ use Cms\Assets;
 use Cms\CookieSession;
 
 /**
+ * mobile detect
+ */
+$di->setShared('detect', function () {
+    return new Mobile_Detect();
+});
+/**
  * http host name
  */
 $di->setShared('host', function () {
@@ -38,8 +44,10 @@ $di->setShared('router', function () {
 $di->setShared('url', function () {
     $config = $this->getConfig();
     $host = $this->getShared('host');
+    $scheme = $this->getRequest()->getScheme();
+
     $url = new UrlResolver();
-    $url->setBaseUri($host.$config->application->baseUri);
+    $url->setBaseUri($scheme.'://'.$host.$config->application->baseUri);
 
     return $url;
 });

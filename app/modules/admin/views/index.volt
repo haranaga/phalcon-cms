@@ -5,16 +5,26 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Phalcon PHP Framework</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <title>phalcon-cms admin</title>
+        <link rel="stylesheet" href="{{url('http://www.hard-ui.com/build/hard-ui.css')}}">
+        <script src="{{url('/components/vue/dist/vue.js')}}" charset="utf-8"></script>
+        <script src="{{url('/components/axios/dist/axios.js')}}" charset="utf-8"></script>
     </head>
     <body>
-        <div class="container">
+
+        <nav class="hd-nav">
+            <ul class="hd-nav-x">
+                <li class="hd-nav-brand"><p>ADMIN</p></li>
+                <li><a href="#">Menu1</a></li>
+                <li><a href="#">Menu2</a></li>
+                <li><a href="#">Menu3</a></li>
+                <li><a href="#">Menu4</a></li>
+                <li><p>Text</p></li>
+            </ul>
+        </nav>
+        
+        <div class="hd-container">
             {{ content() }}
         </div>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
 </html>
