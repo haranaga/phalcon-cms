@@ -6,6 +6,9 @@ use Phalcon\Loader;
 use Phalcon\Mvc\View;
 use Phalcon\Mvc\View\Engine\Php as PhpEngine;
 use Phalcon\Mvc\ModuleDefinitionInterface;
+use Phalcon\Translate\Adapter\NativeArray;
+
+use Cms\Language;
 
 class Module implements ModuleDefinitionInterface
 {
@@ -34,9 +37,16 @@ class Module implements ModuleDefinitionInterface
     public function registerServices(DiInterface $di)
     {
         /**
+         * tlanslation for admin tool
+         * @var Language
+         */
+        $language = new Language();
+        $translate = $language->getTranslation(__DIR__ . '/messages/');
+
+        /**
          * Setting up the view component
          */
-        $di->set('view', function () {
+        $di->set('view', function () use ($translate) {
             $view = new View();
             $view->setDI($this);
             $view->setViewsDir(__DIR__ . '/views/');
@@ -46,6 +56,8 @@ class Module implements ModuleDefinitionInterface
                 '.phtml' => PhpEngine::class
             ]);
 
+            // set tlanslation message
+            $view->setVar('t', $translate);
             return $view;
         });
     }

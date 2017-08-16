@@ -1,8 +1,21 @@
-<h1>Admin!</h1>
+<h1 class="hd-center hd-mgtb-2">{{t._('menu')}}</h1>
+<div class="hd-row">
+    <div class="col-6">
 
-<p>You're now flying with Phalcon. Great things are about to happen!</p>
+    </div>
+    <div class="col-12">
+        <nav class="hd-nav">
+            <ul class="hd-nav-y">
+                <li><a href="#">{{t._('user')}}</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">Menu</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="col-6">
 
-<p>This page is located at <code>views/index/index.volt</code></p>
+    </div>
 
-<p>{{detect.isMobile()}}</p>
-<p>{{dump(host)}}</p>
+</div>
