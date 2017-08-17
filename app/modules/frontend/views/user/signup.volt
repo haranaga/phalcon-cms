@@ -29,6 +29,9 @@
                         </form>
                     </div>
                 </div>
+                <div class="hd-mg-2 hd-center">
+                    Already have an account? {{link_to('_/user/signin','Sign In')}}
+                </div>
             </div>
             <div class="col-6"></div>
         </div>

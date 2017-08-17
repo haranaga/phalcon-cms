@@ -1,6 +1,6 @@
 <section>
     <ul>
-        <li><a href="_frontend/user/signup/">Sign Up</a></li>
-        <li><a href="_frontend/user/signin/">Sign In</a></li>
+        <li>{{link_to('_/user/signup','Sign Up')}}</li>
+        <li>{{link_to('_/user/signin','Sign In')}}</li>
     </ul>
 </section>
