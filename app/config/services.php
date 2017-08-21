@@ -5,6 +5,9 @@ use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Db\Adapter\Pdo\Mysql;
 
+
+use Cms\Language;
+
 /**
  * Shared configuration service
  */
@@ -69,4 +72,15 @@ $di->setShared('voltShared', function ($view) {
     ]);
 
     return $volt;
+});
+
+/**
+ * tlanslation
+ * @var Language
+ */
+
+$di->setShared('t', function () {
+    $language = new Language();
+    $tlanslation = $language->getTranslation(APP_PATH . '/common/messages/');
+    return $tlanslation;
 });

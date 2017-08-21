@@ -1,39 +1,36 @@
 <section id="app">
         <div class="hd-row">
-            <div class="col-6"></div>
-            <div class="col-12">
+            <div class="col-l-6 col-m-3"></div>
+            <div class="col-l-12 col-m-18">
                 <div class="hd-card">
                     <div class="hd-card-body clearfix">
                         <h3 class="hd-mgt-1 hd-mgb-2 hd-center">登録</h3>
-                        <form class="hd-form hd-form-block" action="{{url('_frontend/member/register')}}" method="post" autocomplete="off">
+                        {{content()}}
+                        {% if messages is not empty %}
+                            <ul class="hd-mgb-1 hd-color-error">
+                                {% for message in messages %}
+                                    <li>{{message}}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        <form class="hd-form hd-form-block" action="{{url('_/user/signup')}}" method="post" autocomplete="off">
+
+                            {{form.renderHD('user_login',['help':'help message'])}}
+                            {{form.renderHD('user_password')}}
+                            {{form.renderHD('user_password_confirm')}}
+                            {{form.renderHD('user_agree')}}
+
                             <div class="hd-form-group">
-                                <label class="hd-form-label" for="user_login">ログイン名</label>
-                                <input type="text" name="user_login" v-model="user.user_login" placeholder="ログイン名">
-                            </div>
-                            <div class="hd-form-group">
-                                <label class="hd-form-label" for="user_password">パスワード</label>
-                                <input type="password" name="user_password" v-model="user.user_password" v-on:keyup="checkStrength" autocomplete="new-password" placeholder="パスワード">
-                            </div>
-                            <div class="hd-form-group">
-                                <label class="hd-form-label" for="user_password_confirm">パスワード確認</label>
-                                <input type="password" name="user_password_confirm" v-model="user.user_password_confirm" autocomplete="new-password" placeholder="同じパスワード">
-                            </div>
-                            <div class="hd-form-group">
-                                <label class="hd-form-label" for="">利用規約</label>
-                                <label for="user_agree">
-                                    <input type="checkbox" name="user_agree" v-model="user.user_agree" id="user_agree" value="1">
-                                    <a href="{{url('_frontend/user/tos')}}" target="_blank">ご利用規約</a>に同意する
-                                </label>
                                 <button type="submit" class="hd-mgt-1 hd-right">登録</button>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="hd-mg-2 hd-center">
-                    Already have an account? {{link_to('_/user/signin','Sign In')}}
+                    {{t._('Already have an account?')}} {{link_to('_/user/signin', t._('Sign In'))}}
                 </div>
             </div>
-            <div class="col-6"></div>
+            <div class="col-l-6 col-m-3"></div>
         </div>
 </section>
 
@@ -43,7 +40,7 @@
         el: '#app',
         data: {
             user : {
-                user_login : 'hoge',
+                user_login : '',
                 user_password : '',
                 user_password_confirm : '',
                 user_agree : ''
@@ -51,7 +48,7 @@
         },
         methods : {
             checkStrength: function(event) {
-                alert(this.user.user_password);
+                //alert(this.user.user_password);
             }
         }
     });

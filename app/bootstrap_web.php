@@ -11,7 +11,10 @@ define('APP_PATH', BASE_PATH . '/app');
 // All constants definition here
 require APP_PATH . '/config/constants.php';
 
-try {
+$debug = new \Phalcon\Debug();
+$debug->listen();
+
+// try {
 
     /**
      * The FactoryDefault Dependency Injector automatically registers the services that
@@ -62,7 +65,7 @@ try {
     //echo str_replace(["\n","\r","\t"], '', $application->handle()->getContent());
     echo $application->handle()->getContent();
 
-} catch (\Exception $e) {
-    echo $e->getMessage() . '<br>';
-    echo '<pre>' . $e->getTraceAsString() . '</pre>';
-}
+// } catch (\Exception $e) {
+//     echo $e->getMessage() . '<br>';
+//     echo '<pre>' . $e->getTraceAsString() . '</pre>';
+// }

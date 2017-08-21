@@ -6,17 +6,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         {{get_title()}}
-        <link rel="stylesheet" href="http://www.hard-ui.com/build/hard-ui.min.css">
+        <link rel="stylesheet" href="http://localhost:8080/hard-ui/build/hard-ui.min.css">
 
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
 
     </head>
-    <body>
+    <body class="hd-sticky-footer">
+        <header>
+            <h1 class="hd-center hd-mgtb-1"><a href="{{url('')}}">{{config.name}}</a></h1>
+        </header>
         <div class="hd-wrapper">
             <div class="hd-container">
-                <h1><a href="{{url('')}}">Phalcon-CMS Frontend</a></h1>
                 {{ content() }}
             </div>
         </div>
+        <footer>
+            <div class="hd-center">
+                Powered by {{config.name}}
+            </div>
+        </footer>
     </body>
 </html>

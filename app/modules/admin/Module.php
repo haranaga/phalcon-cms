@@ -40,13 +40,16 @@ class Module implements ModuleDefinitionInterface
          * tlanslation for admin tool
          * @var Language
          */
-        $language = new Language();
-        $translate = $language->getTranslation(__DIR__ . '/messages/');
+
+        $di->setShared('t', function () {
+            $language = new Language();
+            $tlanslation = $language->getTranslation(__DIR__ . '/messages/');
+        });
 
         /**
          * Setting up the view component
          */
-        $di->set('view', function () use ($translate) {
+        $di->set('view', function () use ($tlanslation) {
             $view = new View();
             $view->setDI($this);
             $view->setViewsDir(__DIR__ . '/views/');
@@ -57,7 +60,7 @@ class Module implements ModuleDefinitionInterface
             ]);
 
             // set tlanslation message
-            $view->setVar('t', $translate);
+            $view->setVar('t', $tlanslation);
             return $view;
         });
     }

@@ -3,7 +3,5 @@
  * Backend route setting
  */
 return [
-    '/' => [C=>'index', A=>'index'],
+    '' => [C=>'index', A=>'index'], // backend top
 ];
-
- ?>

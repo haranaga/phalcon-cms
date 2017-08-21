@@ -1,2 +1,2 @@
-<h2>Member</h2>
+<h2 class="hd-center">User</h2>
 {{content()}}

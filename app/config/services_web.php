@@ -5,13 +5,16 @@ use Phalcon\Mvc\Router;
 use Phalcon\Mvc\Url as UrlResolver;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Mvc\View;
+use Phalcon\Mvc\View\Simple as SimpleView;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
+use Phalcon\Mvc\View\Engine\Php as PhpEngine;
 use Phalcon\Flash\Direct as Flash;
 use Phalcon\Http\Response\Cookies;
 use Phalcon\Crypt;
 
 use Cms\Assets;
 use Cms\CookieSession;
+use Cms\Language;
 
 /**
  * mobile detect
@@ -131,4 +134,36 @@ $di->setShared('cookieSession', function () {
     $cs->setKey($this->getConfig()->cookie);
     $cs->setExpire(86400*365*3); // 3year
     return $cs;
+});
+
+/**
+ * Setting up the common view component
+ */
+$di->setShared('pview', function () {
+    $view = new SimpleView();
+    // $view = new View();
+    $view->setDI($this);
+    $view->setViewsDir(APP_PATH . '/common/views/');
+    // $view->setRenderLevel(View::LEVEL_ACTION_VIEW);
+
+    $view->registerEngines([
+        '.volt'  => 'voltShared',
+        '.phtml' => PhpEngine::class
+    ]);
+
+    $view->setVar('t', $this->getT());
+
+    return $view;
+});
+
+/**
+ * Register the session flash service with the Twitter Bootstrap classes
+ */
+$di->set('flash', function () {
+    return new Flash([
+        'error'   => 'hd-message-error',
+        'success' => 'hd-message-success',
+        'notice'  => 'hd-message-notice',
+        'warning' => 'hd-message-waning'
+    ]);
 });

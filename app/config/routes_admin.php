@@ -3,7 +3,5 @@
  * Admin route setting
  */
 return [
-    '/' => [C=>'index', A=>'index'],
+    '' => [C=>'index', A=>'index'], // admin top
 ];
-
- ?>

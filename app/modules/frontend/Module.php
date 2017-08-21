@@ -33,6 +33,7 @@ class Module implements ModuleDefinitionInterface
      */
     public function registerServices(DiInterface $di)
     {
+
         /**
          * Setting up the view component
          */
@@ -40,11 +41,14 @@ class Module implements ModuleDefinitionInterface
             $view = new View();
             $view->setDI($this);
             $view->setViewsDir(__DIR__ . '/views/');
+            $view->setPartialsDir(__DIR__ . '/views/_partials/');
 
             $view->registerEngines([
                 '.volt'  => 'voltShared',
                 '.phtml' => PhpEngine::class
             ]);
+
+            $view->setVar('t', $this->getT());
 
             return $view;
         });
