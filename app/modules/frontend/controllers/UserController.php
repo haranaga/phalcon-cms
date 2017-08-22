@@ -19,7 +19,6 @@ class UserController extends ControllerBase
 
         // register
         if ($this->request->isPost()) {
-            //$messages = $validation->validate($this->request->getPost());
             if (!$form->isValid($this->request->getPost())) {
                 $this->flash->error('errer');
             }

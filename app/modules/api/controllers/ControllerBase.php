@@ -8,6 +8,13 @@ class ControllerBase extends Controller
 {
     public $version = 1;
 
+
+    public function initialize()
+    {
+        // view off
+        $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
+    }
+
     /**
      * Default Response
      * @method defaultResponseArray
@@ -19,20 +26,14 @@ class ControllerBase extends Controller
             'version' => $this->version,
         ];
     }
-
-    public function initialize()
-    {
-        // view off
-        $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
-    }
-
     /**
      *
      * @param int $code
      * @param array $content
      */
-    protected function output($code, $content=array())
+    protected function output($code, $status = true, $content=array())
     {
+        $content['success'] = $status;
         $content = array_merge($this->defaultResponseArray(), $content);
 
         // Header

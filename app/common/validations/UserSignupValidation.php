@@ -17,6 +17,20 @@ class UserSignupValidation extends Validation
         );
 
         $this->add(
+            'user_email',
+            new Validator\PresenceOf([
+                'message'=> $this->t->_('is required', ['name' => $this->t->_('user_email')]),
+            ])
+        );
+
+        $this->add(
+            'user_email',
+            new Validator\Email([
+                'message'=> $this->t->_('is email format', ['name' => $this->t->_('user_email')]),
+            ])
+        );
+
+        $this->add(
             'user_password',
             new Validator\PresenceOf([
                 'message'=> $this->t->_('is required', ['name' => $this->t->_('user_password')]),

@@ -8,7 +8,8 @@
         {{get_title()}}
         <link rel="stylesheet" href="http://localhost:8080/hard-ui/build/hard-ui.min.css">
 
-        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        {{javascript_include('components/vue/dist/vue.js')}}
+        {{javascript_include('components/axios/dist/axios.js')}}
 
     </head>
     <body class="hd-sticky-footer">

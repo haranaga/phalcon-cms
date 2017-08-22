@@ -65,17 +65,6 @@ $di->setShared('url', function () {
 //     return $session;
 // });
 
-/**
- * Register the session flash service with the Twitter Bootstrap classes
- */
-$di->set('flash', function () {
-    return new Flash([
-        'error'   => 'alert alert-danger',
-        'success' => 'alert alert-success',
-        'notice'  => 'alert alert-info',
-        'warning' => 'alert alert-warning'
-    ]);
-});
 
 $di->setShared('cookies', function () {
     $cookies = new Cookies();
@@ -161,9 +150,9 @@ $di->setShared('pview', function () {
  */
 $di->set('flash', function () {
     return new Flash([
-        'error'   => 'hd-message-error',
-        'success' => 'hd-message-success',
-        'notice'  => 'hd-message-notice',
-        'warning' => 'hd-message-waning'
+        'error'   => 'hd-message-error hd-mgtb-1',
+        'success' => 'hd-message-success hd-mgtb-1',
+        'notice'  => 'hd-message-notice hd-mgtb-1',
+        'warning' => 'hd-message-waning hd-mgtb-1'
     ]);
 });

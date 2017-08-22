@@ -11,6 +11,7 @@ class UserForm extends FormBase
         'user_login' => 'Text',
         'user_display_name' => 'Text',
         'user_password' => 'Password',
+        'user_email' => 'Email',
         // 'user_role' => 'Select',
         // 'user_status' => 'Select',
         // 'user_image' => 'Image',

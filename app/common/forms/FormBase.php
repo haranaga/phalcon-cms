@@ -28,6 +28,7 @@ class FormBase extends Form
         'RadioGroup' => 'Cms\Forms\Elements\RadioGroup',
         'DateTimePicker' => 'Cms\Forms\Elements\DateTimePicker',
         'ImageManager' => 'Cms\Forms\Elements\ImageManager',
+        'Email' => 'Phalcon\Forms\Element\Email',
     ];
     public function initialize($element = null, $options = null)
     {

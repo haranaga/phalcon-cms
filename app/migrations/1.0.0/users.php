@@ -40,11 +40,19 @@ class UsersMigration_100 extends Migration
                         ]
                     ),
                     new Column(
-                        'user_password',
+                        'user_email',
                         [
                             'type' => Column::TYPE_VARCHAR,
                             'size' => 200,
                             'after' => 'user_login'
+                        ]
+                    ),
+                    new Column(
+                        'user_password',
+                        [
+                            'type' => Column::TYPE_VARCHAR,
+                            'size' => 200,
+                            'after' => 'user_email'
                         ]
                     ),
                     new Column(
