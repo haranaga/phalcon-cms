@@ -37,19 +37,9 @@ class Module implements ModuleDefinitionInterface
     public function registerServices(DiInterface $di)
     {
         /**
-         * tlanslation for admin tool
-         * @var Language
-         */
-
-        $di->setShared('t', function () {
-            $language = new Language();
-            $tlanslation = $language->getTranslation(__DIR__ . '/messages/');
-        });
-
-        /**
          * Setting up the view component
          */
-        $di->set('view', function () use ($tlanslation) {
+        $di->set('view', function () {
             $view = new View();
             $view->setDI($this);
             $view->setViewsDir(__DIR__ . '/views/');
@@ -59,8 +49,8 @@ class Module implements ModuleDefinitionInterface
                 '.phtml' => PhpEngine::class
             ]);
 
-            // set tlanslation message
-            $view->setVar('t', $tlanslation);
+            $view->setVar('t', $this->getT());
+
             return $view;
         });
     }

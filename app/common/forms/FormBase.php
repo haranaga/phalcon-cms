@@ -134,7 +134,8 @@ class FormBase extends Form
             <label for="'.$name.'" class="hd-form-label">'.
             $this->t->_($name).$required_mark.
             '</label>
-            '.$element->render().$help.$error_message.'
+            '.$element->render().
+            '<div class="hd-form-message" id="form-message-'.$name.'">'.$help.$error_message.'</div>
         </div>
         ';
 

@@ -20,7 +20,7 @@ $di->setShared('config', function () {
  */
 $di->setShared('db', function () {
     $config = $this->getConfig();
-    $connection = new Mysql($config->database);
+    $connection = new Mysql($config->database->toArray());
     return $connection;
 });
 

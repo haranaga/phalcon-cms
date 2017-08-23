@@ -80,6 +80,8 @@ class Users extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
+        $this->keepSnapshots(true);
+
         // $this->setSchema("phalcon-cms");
         $this->setSource("users");
         $this->hasMany('user_id', 'Articles', 'user_id', ['alias' => 'Articles']);
@@ -87,6 +89,22 @@ class Users extends \Phalcon\Mvc\Model
         $this->belongsTo('company_id', 'Cms\Models\Companies', 'company_id', ['alias' => 'Companies']);
         $this->belongsTo('site_id', 'Cms\Models\Sites', 'site_id', ['alias' => 'Sites']);
     }
+
+    public function beforeCreate()
+    {
+        // encrypt password on create
+        $this->user_password = $this->getDI()->get('security')->hash($this->user_password);
+    }
+    public function beforeUpdate()
+    {
+        // encrypt password on update
+        if ($this->hasSnapshotData()) {
+            if ($this->hasChanged('user_password')) {
+                $this->user_password = $this->getDI()->get('security')->hash($this->user_password);
+            }
+        }
+    }
+
 
     /**
      * Allows to query a set of records that match the specified conditions
