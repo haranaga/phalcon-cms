@@ -15,6 +15,7 @@ use Phalcon\Crypt;
 use Cms\Assets;
 use Cms\CookieSession;
 use Cms\Language;
+use Cms\Html;
 
 /**
  * mobile detect
@@ -155,4 +156,8 @@ $di->set('flash', function () {
         'notice'  => 'hd-message-notice hd-mgtb-1',
         'warning' => 'hd-message-waning hd-mgtb-1'
     ]);
+});
+
+$di->setShared('html', function () {
+    return new Html();
 });

@@ -43,6 +43,7 @@ class Module implements ModuleDefinitionInterface
             $view = new View();
             $view->setDI($this);
             $view->setViewsDir(__DIR__ . '/views/');
+            $view->setPartialsDir(__DIR__ . '/views/_partials/');
 
             $view->registerEngines([
                 '.volt'  => 'voltShared',
@@ -53,5 +54,10 @@ class Module implements ModuleDefinitionInterface
 
             return $view;
         });
+
+        // debug
+        if ($di->getConfig()->debug == true) {
+            $debugWidget = new \Phalcon\Debug\DebugWidget($di);
+        }
     }
 }

@@ -1,6 +1,7 @@
 {
     "require": {
         "phalcon/incubator": "^3.2",
-        "mobiledetect/mobiledetectlib": "^2.8"
+        "mobiledetect/mobiledetectlib": "^2.8",
+        "phalcon-tools/debugger": "^1.0"
     }
 }

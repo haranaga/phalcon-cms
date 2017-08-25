@@ -113,34 +113,13 @@ class SitesMigration_100 extends Migration
                             'size' => 20,
                             'after' => 'site_update_at'
                         ]
-                    ),
-                    new Column(
-                        'company_id',
-                        [
-                            'type' => Column::TYPE_BIGINTEGER,
-                            'unsigned' => true,
-                            'notNull' => true,
-                            'size' => 20,
-                            'after' => 'user_id'
-                        ]
                     )
                 ],
                 'indexes' => [
                     new Index('PRIMARY', ['site_id'], 'PRIMARY'),
-                    new Index('fk_sites_users_idx', ['user_id'], null),
-                    new Index('fk_sites_companies1_idx', ['company_id'], null)
+                    new Index('fk_sites_users_idx', ['user_id'], null)
                 ],
                 'references' => [
-                    new Reference(
-                        'fk_sites_companies1',
-                        [
-                            'referencedTable' => 'companies',
-                            'columns' => ['company_id'],
-                            'referencedColumns' => ['company_id'],
-                            'onUpdate' => 'NO ACTION',
-                            'onDelete' => 'NO ACTION'
-                        ]
-                    ),
                     new Reference(
                         'fk_sites_users',
                         [
@@ -154,7 +133,7 @@ class SitesMigration_100 extends Migration
                 ],
                 'options' => [
                     'TABLE_TYPE' => 'BASE TABLE',
-                    'AUTO_INCREMENT' => '1',
+                    'AUTO_INCREMENT' => '',
                     'ENGINE' => 'InnoDB',
                     'TABLE_COLLATION' => 'utf8mb4_general_ci'
                 ],

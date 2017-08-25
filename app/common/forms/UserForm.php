@@ -12,13 +12,8 @@ class UserForm extends FormBase
         'user_display_name' => 'Text',
         'user_password' => 'Password',
         'user_email' => 'Email',
-        // 'user_role' => 'Select',
-        // 'user_status' => 'Select',
-        // 'user_image' => 'Image',
+        'user_role' => 'UserRole',
+        'user_status' => 'UserStatus',
+        'user_image' => 'File',
     ];
-
-    public function initialize($entity = null, $options = null)
-    {
-        parent::initialize($entity, $options);
-    }
 }

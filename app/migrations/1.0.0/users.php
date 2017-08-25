@@ -106,48 +106,14 @@ class UsersMigration_100 extends Migration
                             'size' => 20,
                             'after' => 'user_image'
                         ]
-                    ),
-                    new Column(
-                        'company_id',
-                        [
-                            'type' => Column::TYPE_BIGINTEGER,
-                            'unsigned' => true,
-                            'notNull' => true,
-                            'size' => 20,
-                            'after' => 'site_id'
-                        ]
                     )
                 ],
                 'indexes' => [
-                    new Index('PRIMARY', ['user_id'], 'PRIMARY'),
-                    new Index('fk_users_sites_idx', ['site_id'], null),
-                    new Index('fk_users_companies1_idx', ['company_id'], null)
-                ],
-                'references' => [
-                    new Reference(
-                        'fk_users_companies1',
-                        [
-                            'referencedTable' => 'companies',
-                            'columns' => ['company_id'],
-                            'referencedColumns' => ['company_id'],
-                            'onUpdate' => 'NO ACTION',
-                            'onDelete' => 'NO ACTION'
-                        ]
-                    ),
-                    new Reference(
-                        'fk_users_sites',
-                        [
-                            'referencedTable' => 'sites',
-                            'columns' => ['site_id'],
-                            'referencedColumns' => ['site_id'],
-                            'onUpdate' => 'NO ACTION',
-                            'onDelete' => 'NO ACTION'
-                        ]
-                    )
+                    new Index('PRIMARY', ['user_id'], 'PRIMARY')
                 ],
                 'options' => [
                     'TABLE_TYPE' => 'BASE TABLE',
-                    'AUTO_INCREMENT' => '1',
+                    'AUTO_INCREMENT' => '',
                     'ENGINE' => 'InnoDB',
                     'TABLE_COLLATION' => 'utf8mb4_general_ci'
                 ],

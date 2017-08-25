@@ -29,7 +29,12 @@ class FormBase extends Form
         'DateTimePicker' => 'Cms\Forms\Elements\DateTimePicker',
         'ImageManager' => 'Cms\Forms\Elements\ImageManager',
         'Email' => 'Phalcon\Forms\Element\Email',
+        'Select' => 'Phalcon\Forms\Element\Select',
+        'File' => 'Phalcon\Forms\Element\File',
+        'UserRole' => 'Cms\Forms\Elements\UserRole',
+        'UserStatus' => 'Cms\Forms\Elements\UserStatus',
     ];
+
     public function initialize($element = null, $options = null)
     {
         $this->addDefaultElements();

@@ -6,7 +6,7 @@
     <div class="col-12">
         <nav class="hd-nav">
             <ul class="hd-nav-y">
-                <li><a href="#">{{t._('user')}}</a></li>
+                <li>{{link_to('_admin/user',t._('user'))}}</li>
                 <li><a href="#">Menu</a></li>
                 <li><a href="#">Menu</a></li>
                 <li><a href="#">Menu</a></li>

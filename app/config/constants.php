@@ -9,3 +9,10 @@ define('P', 'params');
 
 define('USER_STATUS_INVALID', 0);
 define('USER_STATUS_VALID', 1);
+
+define('USER_ROLE_ADMIN', 'admin');
+define('USER_ROLE_OWNER', 'owner');
+define('USER_ROLE_EDITOR', 'editor');
+define('USER_ROLE_BLOGGER', 'blogger');
+define('USER_ROLE_OPEN', 'open');
+define('USER_ROLE_GHOST', 'ghost');

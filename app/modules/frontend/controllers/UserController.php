@@ -24,7 +24,6 @@ class UserController extends ControllerBase
                 $user->assign($this->request->getPost());
                 $user->user_status = USER_STATUS_VALID;
                 $user->site_id = 0;
-                $user->company_id = 0;
 
                 try {
                     if ($user->save()) {
