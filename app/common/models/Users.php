@@ -1,6 +1,6 @@
 <?php namespace Cms\Models;
 
-class Users extends \Phalcon\Mvc\Model
+class Users extends ModelBase
 {
 
     /**
@@ -86,7 +86,6 @@ class Users extends \Phalcon\Mvc\Model
         $this->setSource("users");
         $this->hasMany('user_id', 'Articles', 'user_id', ['alias' => 'Articles']);
         $this->hasMany('user_id', 'Sites', 'user_id', ['alias' => 'Sites']);
-        $this->belongsTo('company_id', 'Cms\Models\Companies', 'company_id', ['alias' => 'Companies']);
         $this->belongsTo('site_id', 'Cms\Models\Sites', 'site_id', ['alias' => 'Sites']);
     }
 

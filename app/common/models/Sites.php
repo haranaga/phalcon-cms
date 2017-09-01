@@ -1,6 +1,6 @@
 <?php namespace Cms\Models;
 
-class Sites extends \Phalcon\Mvc\Model
+class Sites extends ModelBase
 {
 
     /**
@@ -82,12 +82,6 @@ class Sites extends \Phalcon\Mvc\Model
      */
     public $user_id;
 
-    /**
-     *
-     * @var integer
-     * @Column(type="integer", length=20, nullable=false)
-     */
-    public $company_id;
 
     /**
      * Initialize method for model.
@@ -100,7 +94,6 @@ class Sites extends \Phalcon\Mvc\Model
         $this->hasMany('site_id', 'Categories', 'site_id', ['alias' => 'Categories']);
         $this->hasMany('site_id', 'Options', 'site_id', ['alias' => 'Options']);
         $this->hasMany('site_id', 'Users', 'site_id', ['alias' => 'Users']);
-        $this->belongsTo('company_id', 'Cms\Models\Companies', 'company_id', ['alias' => 'Companies']);
         $this->belongsTo('user_id', 'Cms\Models\Users', 'user_id', ['alias' => 'Users']);
     }
 
@@ -135,5 +128,4 @@ class Sites extends \Phalcon\Mvc\Model
     {
         return 'sites';
     }
-
 }

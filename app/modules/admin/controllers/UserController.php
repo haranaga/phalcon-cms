@@ -17,8 +17,5 @@ class UserController extends DataController
         'site_id' => 0,
         'user_role' => USER_ROLE_OPEN,
     ];
-    public function indexAction()
-    {
-        parent::indexAction();
-    }
+    public $limit = 10;
 }

@@ -31,6 +31,16 @@ class UserValidation extends Validation
         );
 
         $this->add(
+            "user_email",
+            new Validator\Uniqueness([
+                "model"   =>  new Users(),
+                "field"  => ['site_id','user_email'],
+                "except" => ["user_status" => USER_STATUS_INVALID,],
+                "message" => $this->t->_('User exists', ['name' => $this->t->_('user_email')]),
+            ])
+        );
+
+        $this->add(
             'user_password',
             new Validator\PresenceOf([
                 'message'=> $this->t->_('is required', ['name' => $this->t->_('user_password')]),
@@ -52,16 +62,6 @@ class UserValidation extends Validation
                 "field"  => ['site_id','user_login'],
                 "except" => ["user_status" => USER_STATUS_INVALID,],
                 "message" => $this->t->_('User exists', ['name' => $this->t->_('user_login')]),
-            ])
-        );
-
-        $this->add(
-            "user_email",
-            new Validator\Uniqueness([
-                "model"   =>  new Users(),
-                "field"  => ['site_id','user_email'],
-                "except" => ["user_status" => USER_STATUS_INVALID,],
-                "message" => $this->t->_('User exists', ['name' => $this->t->_('user_email')]),
             ])
         );
     }

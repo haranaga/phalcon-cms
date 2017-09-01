@@ -7,17 +7,16 @@ $messages =[
 
     // Field name and index value
     'user' => 'ユーザー',
+    'user_id' => 'ID',
     'user_name' => '氏名',
     'user_login' => 'ログイン名',
     'user_email' => 'メールアドレス',
     'user_password' => 'パスワード',
     'user_password_confirm' => 'パスワード確認',
     'user_agree' => '利用規約',
-
     'user_status' => 'ステータス',
     'user_status_valid' => '有効',
     'user_status_invalid' => '無効',
-
     'user_role' => 'アカウント権限',
     'user_role_admin' => '管理者',
     'user_role_owner' => 'オーナー',
@@ -25,8 +24,19 @@ $messages =[
     'user_role_blogger' => '投稿者',
     'user_role_open' => '一般',
     'user_role_ghost' => 'ゾンビ',
-
     'user_image' => 'プロフィール画像',
+
+    'site' => 'サイト',
+    'site_name' => 'サイト名',
+    'site_domain' => 'ドメイン',
+    'site_url' => 'URL',
+    'site_title' => 'title',
+    'site_description' => 'description',
+    'site_keywords' => 'keywords',
+    'site_status' => 'ステータス',
+    'site_created_at' => '作成日',
+    'site_update_at' => '更新日',
+
 
     // Action
     'action_new' => '登録',
@@ -54,6 +64,9 @@ $messages =[
     'Password strength strong' => 'いいパスワードです',
     'You have error' => '以下の項目を確認してください',
     'Success' => '%name%完了しました',
+    'Create success' => '新規作成しました',
     'Done' => '完了',
     'User exists' => '%name%はすでに登録されています',
+    'Page' => '%name%ページ',
+    'Total' => '全%name%件',
 ];

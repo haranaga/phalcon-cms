@@ -6,6 +6,7 @@ use Phalcon\Mvc\Controller;
 use Phalcon\Mvc\Dispatcher\Exception ;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Validation\Validator;
+use Phalcon\Mvc\Model;
 
 class DataController extends Controller
 {
@@ -70,9 +71,7 @@ class DataController extends Controller
     }
     public function indexAction()
     {
-        $this->tag->setTitleSeparator(' | ');
-        $this->tag->setTitle('いんでくす');
-        $this->tag->prependTitle('ほげ');
+        $this->tag->prependTitle($this->t->_('action_index'));
         try {
             $query = $this->model::query();
 
@@ -134,6 +133,7 @@ class DataController extends Controller
             $this->view->page  = $this->getPaginate($query->execute(), $this->request->getQuery('limit', 'int', $this->limit));
 
             $this->view->columns = $this->list;
+            $this->view->id = $this->id;
         } catch (\Exception $e) {
             echo '<pre>'.$e->getTraceAsString().'</pre>';
         }
@@ -145,16 +145,57 @@ class DataController extends Controller
         $form->setValidation(new $this->validation());
 
         if ($this->request->isPost()) {
-            $this->save($form);
+            if ($this->create($form)) {
+                return $this->dispatcher->forward([
+                    C=>$this->dispatcher->getControllerName(),
+                    A=>'done',
+                ]);
+            }
         }
 
         $this->view->form = $form;
+        $this->view->pick($this->dispatcher->getControllerName().'/form');
+    }
+
+    public function editAction()
+    {
+        if ($this->request->isGet()) {
+            $params = $this->dispatcher->getParams();
+            $id = $params[0];
+        }
+
+        if ($this->request->isPost()) {
+            $id = $this->request->getPost($this->id);
+        }
+
+        if (is_numeric($id)) {
+            $origin = $this->model::findFirst($this->id.' = ' .$id);
+            $form = new $this->form($origin);
+            $form->setValidation(new $this->validation());
+            $this->view->form = $form;
+            if ($this->request->isPost()) {
+                if ($this->update($form, $origin)) {
+                    return $this->dispatcher->forward([
+                        C=>$this->dispatcher->getControllerName(),
+                        A=>'done',
+                    ]);
+                }
+            }
+            $this->view->pick($this->dispatcher->getControllerName().'/form');
+        } else {
+            $this->flash->error('Invalid method');
+            return $this->dispatcher->forward([
+                C=>$this->dispatcher->getControllerName(),
+                A=>'done'
+            ]);
+        }
     }
 
     public function doneAction()
     {
     }
-    public function save(&$form)
+
+    public function create(&$form)
     {
         $data = array_merge($this->default, $this->request->getPost());
         if ($form->isValid($data)) {
@@ -162,21 +203,41 @@ class DataController extends Controller
             $model->assign($data);
             try {
                 if ($model->save()) {
-                    $this->flash->success('Save success');
-                    return $this->dispatcher->forward([
-                        C=>$this->dispatcher->getControllerName(),
-                        A=>'done',
-                    ]);
+                    $this->flash->success('Create success');
+                    return true;
+                } else {
+                    $form->setModelMessages($model->getMessages());
+                    return false;
                 }
-                $form->setModelMessages($model->getMessages());
             } catch (\Exception $e) {
                 var_dump($e);
                 exit;
             }
         }
         $this->flash->error($this->t->_('You have error'));
-
         return false;
+    }
+
+    public function update(&$form, &$model)
+    {
+        $data = $this->request->getPost();
+        $model->setDirtyState(Model::DIRTY_STATE_PERSISTENT);
+        if ($form->isValid($data, $model)) {
+            $model->assign($data);
+            try {
+                if ($model->save()) {
+                    $this->flash->success('Update success');
+                    return true;
+                } else {
+                    $form->setModelMessages($model->getMessages());
+                    return false;
+                }
+            } catch (\Exception $e) {
+                var_dump($e);
+                exit;
+            }
+        }
+        $this->flash->error($this->t->_('You have error'));
     }
 
     /**
