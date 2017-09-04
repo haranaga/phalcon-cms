@@ -151,10 +151,10 @@ $di->setShared('pview', function () {
  */
 $di->set('flash', function () {
     return new Flash([
-        'error'   => 'hd-message-error hd-mgtb-1',
-        'success' => 'hd-message-success hd-mgtb-1',
-        'notice'  => 'hd-message-notice hd-mgtb-1',
-        'warning' => 'hd-message-waning hd-mgtb-1'
+        'error'   => 'alert alert-danger',
+        'success' => 'alert alert-success',
+        'notice'  => 'alert alert-info',
+        'warning' => 'alert alert-warning'
     ]);
 });
 

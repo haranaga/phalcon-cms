@@ -47,6 +47,123 @@ class FormBase extends Form
             }
         }
     }
+
+    public function renderBS($name, $options=null)
+    {
+        $element = $this->get($name);
+
+        $default_options = [
+            'label' => $this->t->_($name),
+            'help' => '',
+            'class' => 'form-control',
+            'placeholder' => $this->t->_('Please input', ['name' => $this->t->_($name)]),
+        ];
+
+        // attributes
+        if (is_array($options)) {
+            $options = array_merge($default_options, $options);
+        } else {
+            $options = $default_options;
+        }
+
+        // error messages from Validation and Model messages
+        // Get any generated messages for the current element
+        $msg = [];
+        $has_error = false;
+        if ($this->hasMessagesFor($name)) {
+            $messages = $this->getMessagesFor($name);
+            if (!empty($messages) and $messages->count()) {
+                foreach ($messages as $message) {
+                    $msg[] = $message->getMessage();
+                    $has_error = true;
+                }
+            }
+        }
+        if (count($this->model_messages)) {
+            foreach ($this->model_messages as $message) {
+                if ($message->getField() == $name or $message->getField()[0] == $name) {
+                    $msg[] = $message->getMessage();
+                    $has_error = true;
+                }
+            }
+        }
+        if ($has_error) {
+            $options['class'] = $options['class']." is-invalid";
+        }
+
+        // set attribute from view
+        foreach ($options as $key => $value) {
+            if ($key != 'label' and $key != 'help') {
+                $element->setAttribute($key, $value);
+            }
+        }
+
+        // require
+        $required = false;
+        if (!empty($this->getValidation())) {
+            $validators = $this->getValidation()->getValidators();
+            if (count($validators)) {
+                foreach ($validators as $vald) {
+                    if ($vald[0] == $element->getName() and get_class($vald[1]) == 'Phalcon\Validation\Validator\PresenceOf') {
+                        $required = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+
+        /**
+         * HTML Generate
+         */
+        // required mark
+        $required_mark = '';
+        if ($required) {
+            $required_mark = '*';
+        }
+
+        // error
+        $error_class = '';
+        $error_message = '';
+        if ($has_error) {
+            $error_class = 'is-invalid';
+            $error_message = '';
+            foreach ($msg as $message) {
+                $error_message .= '<p>'.$message.'</p>';
+            }
+        }
+
+        // help
+        $help = '';
+        if (!empty($options['help'])) {
+            $help = '<p>'.$options['help'].'</p>';
+        }
+
+        $out = '
+        <div class="form-group '. $error_class.'">
+            <label for="'.$name.'">'.
+            $this->t->_($name).$required_mark.
+            '</label>
+            '.$element->render().
+            '<div class="invalid-feedback" id="form-message-'.$name.'">'.$help.$error_message.'</div>
+        </div>
+        ';
+
+        return $out;
+
+        // $pview = clone $this->pview;
+        // $params = [
+        //     'element' => $element,
+        //     'messages' => $msg,
+        //     'help' => $options['help'],
+        //     'required' => $required,
+        // ];
+        // $pview->render('element', $params);
+        // // echo $pview->getActiveRenderPath();
+        // return  $pview->getContent();
+        // // zzzreturn $pview->getContent();
+    }
+
     public function renderHD($name, $options=null)
     {
         $element = $this->get($name);
@@ -121,7 +238,7 @@ class FormBase extends Form
         $error_class = '';
         $error_message = '';
         if ($has_error) {
-            $error_class = 'hd-color-error';
+            $error_class = 'uk-form-danger';
             $error_message = '';
             foreach ($msg as $message) {
                 $error_message .= '<p>'.$message.'</p>';
@@ -135,8 +252,8 @@ class FormBase extends Form
         }
 
         $out = '
-        <div class="hd-form-group '. $error_class.'">
-            <label for="'.$name.'" class="hd-form-label">'.
+        <div class="uk-margin '. $error_class.'">
+            <label for="'.$name.'" class="uk-form-label">'.
             $this->t->_($name).$required_mark.
             '</label>
             '.$element->render().
