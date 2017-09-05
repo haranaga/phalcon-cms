@@ -12,6 +12,9 @@
     <li class="nav-item"><a class="nav-link" href="#">Menu2</a></li>
     <li class="nav-item"><a class="nav-link" href="#">Menu3</a></li>
     <li class="nav-item"><a class="nav-link" href="#">Menu4</a></li>
+    <li class="nav-item">
+        <button type="button" class="btn btn-outline-primary">new</button>
+    </li>
 </ul>
 
 <div class="hd-container">

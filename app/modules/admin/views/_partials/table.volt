@@ -1,5 +1,10 @@
 {% set path = dispatcher.getControllerName()  %}
 {% if page.total_items > 0 %}
+<style media="screen">
+    th {
+        white-space: nowrap;
+    }
+</style>
         <table id="tableApp" class="table table-responsive table-bordered">
             <thead>
                 <th><input type="checkbox" name="checkall" id="checkAll" :value="1" @change="toggleCheck()" v-model="checkAll"></th>

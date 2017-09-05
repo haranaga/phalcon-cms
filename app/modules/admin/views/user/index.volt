@@ -13,4 +13,5 @@
     }
 </style>
 
+{{partial('filter')}}
 {{partial('table')}}

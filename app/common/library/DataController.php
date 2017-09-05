@@ -59,6 +59,12 @@ class DataController extends Controller
      */
     public $limit = 2;
 
+    /**
+     * list filter
+     * @var array     [description]
+     */
+    public $filter = [];
+
     public function initialize()
     {
         if (!class_exists($this->model)) {
@@ -71,6 +77,8 @@ class DataController extends Controller
     }
     public function indexAction()
     {
+        $all = true;
+
         $this->tag->prependTitle($this->t->_('action_index'));
         try {
             $query = $this->model::query();
@@ -84,6 +92,7 @@ class DataController extends Controller
             foreach (get_class_vars($this->model) as $key=> $val) {
                 if ($this->request->hasQuery($key)) {
                     $query = $query->andWhere($key .'= :val:', ['val' => $this->request->getQuery($key)]);
+                    $all = false;
                 }
             }
 
@@ -111,6 +120,7 @@ class DataController extends Controller
                     // and で絞込
                     $where = implode(' and ', $word_where);
                     $query = $query->andWhere($where, $bind);
+                    $all = false;
                 }
             }
 
@@ -129,11 +139,19 @@ class DataController extends Controller
                 $this->view->order = (object)[ 'name' => $this->id, 'desc' => true];
             }
 
+            // custom query
+            $this->customQuery($query);
+
             // limit
             $this->view->page  = $this->getPaginate($query->execute(), $this->request->getQuery('limit', 'int', $this->limit));
 
+            $this->view->all = $all;
             $this->view->columns = $this->list;
             $this->view->id = $this->id;
+
+            if (!empty($this->filter)) {
+                $this->view->filter = $this->filter;
+            }
         } catch (\Exception $e) {
             echo '<pre>'.$e->getTraceAsString().'</pre>';
         }
@@ -241,11 +259,19 @@ class DataController extends Controller
     }
 
     /**
-    * ページネーション
-    * 結果リスト $resultset を $limit 件数毎にページ化しビューにアサインする
+     * custom query if exists for each controller
+     * @method customQuery
+     * @param  [type]      $query [description]
+     * @return [type]             [description]
+     */
+    protected function customQuery(&$query)
+    {
+    }
+    /**
+    * pagination
     * @method paginate
     * @param  Phalcon\Mvc\Model\ResultSet   $resultset 検索結果リスト
-    * @param  int   $limit     １ページあたりの件数
+    * @param  int   $limit      rows per page
     * @return page              $paginator->getPagenate() 結果
     */
     protected function getPaginate($resultset, $limit)

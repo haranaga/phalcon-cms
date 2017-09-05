@@ -50,9 +50,11 @@ $messages =[
     'action_recover' => '復旧',
 
     // Messages, Titles
+    'All' => '全',
     'Already have an account?' => 'すでに登録済みの方',
     'Sign in' => 'ログイン',
     'Sign up' => '登録',
+    'Search' => '検索',
     'is required' => '%name%を入力してください',
     'is alphanumeric characters' => '%name%は半角英数字です',
     'is email format' => '正しいEメールアドレスを入力してください',

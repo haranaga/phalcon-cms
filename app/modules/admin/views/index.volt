@@ -18,7 +18,9 @@
     </head>
     <body>
         {{partial('navbar')}}
-        {{content()}}
+        <div class="container-fluid">
+            {{content()}}
+        </div>
         {{partial('footer')}}
     </body>
 </html>

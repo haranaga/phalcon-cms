@@ -1,5 +1,5 @@
 {% if page.total_pages > 1 %}
-    <ul class="pagination justify-content-center">
+    <ul class="pagination justify-content-center my-2">
         {% if page.current == 1  %}
             <li class="page-item disabled">
                 <a class="page-link" href="#">

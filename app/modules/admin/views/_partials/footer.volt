@@ -1,5 +1,22 @@
 <footer>
-    <div>
-        <div uk-sticky="bottom: true">CMS</div>
+    <div class="text-center">
+        {{config.name}}
     </div>
 </footer>
+<style media="screen">
+    html {
+        position: relative;
+        min-height: 100%;
+    }
+    body {
+        margin-bottom: 4rem;
+    }
+    footer {
+        position: absolute;
+        bottom:0;
+        width: 100%;
+        height: 4rem;
+        line-height: 4rem;
+        background-color: #f5f5f5;
+    }
+</style>
