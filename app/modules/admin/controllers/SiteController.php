@@ -19,4 +19,11 @@ class SiteController extends DataController
         'user_id' => 10,
     ];
     public $limit = 10;
+
+    public function filter()
+    {
+        return [
+            'site_status' => $this->d->site_status->toArray(),
+        ];
+    }
 }

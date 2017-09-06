@@ -27,6 +27,37 @@
                 <th><i class="fa fa-trash" aria-hidden="true"></i></th>
             </thead>
             <tbody>
+
+                {# volt version #}
+                {% for item in page.items  %}
+                    <tr>
+                        <td>
+                            <input type="checkbox" class="form-control" value="{{item.offsetGet(id)}}" v-model="checkedId">
+                        </td>
+                        <td>
+                            <a href="{{html.admin_url(dispatcher.getControllerName()~'/edit/'~item.user_id)}}">
+                                <i class="fa fa-pencil-square fa-fw" aria-hidden="true"></i>
+                            </a>
+                        </td>
+
+                        {% for col in columns %}
+                            <td>
+                                {% if d.get(col) is not empty %}
+                                    {{t._(d.get(col).get(item.offsetGet(col)))}}
+                                {% else %}
+                                    {{item.offsetGet(col)}}
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+
+                        <td>
+                            <a href="{{html.admin_url(dispatcher.getControllerName()~'/trash/'~item.user_id)}}">
+                                <i class="fa fa-trash fa-fw" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                {# vue version
                 <tr v-for="row in rows">
                     <td><input type="checkbox" class="uk-checkbox" :value="row.{{id}}" v-model="checkedId"></td>
                     <td>
@@ -43,6 +74,7 @@
                         </a>
                     </td>
                 </tr>
+                #}
             </tbody>
         </table>
         <div class="center-block">

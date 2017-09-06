@@ -51,7 +51,7 @@ class Module implements ModuleDefinitionInterface
             ]);
 
             $view->setVar('t', $this->getT());
-
+            $view->setVar('d', $this->getD());
             return $view;
         });
 

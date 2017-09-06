@@ -84,3 +84,7 @@ $di->setShared('t', function () {
     $tlanslation = $language->getTranslation(APP_PATH . '/common/messages/');
     return $tlanslation;
 });
+
+$di->setShared('d', function () {
+    return $dictionary = include(APP_PATH . '/config/dictionary.php');
+});

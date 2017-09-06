@@ -1,26 +1,26 @@
-<ul class="nav nav-tabs">
+
+<ul class="nav nav-tabs" style="font-size: 0.8rem;">
     <li class="nav-item">
         <a class="nav-link {{all ? 'active':''}}" href="{{html.admin_url(dispatcher.getControllerName())}}">{{t._('All')}}{{t._(dispatcher.getControllerName())}}</a>
     </li>
     {% if filter is not empty %}
-        {% for name, lst in filter  %}
+        {% for name, list in filter  %}
             <li class="nav-item">
-                {% if lst is iterable %}
+                {% if list is iterable %}
                     <a class="nav-link dropdown-toggle {{request.hasQuery(name) ? 'active':''}}" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         {% if request.hasQuery(name) %}
-                            {{t._(name)}}:<b>{{request.getQuery(name)|e}}</b>
+                            {{t._(name)}}:<b>{{t._(filter[name][request.getQuery(name)])}}</b>
                         {% else %}
                             {{t._(name)}}
                         {% endif %}
                     </a>
                     <div class="dropdown-menu">
-                        {% for k,v in lst  %}
-                             <a class="dropdown-item" href="{{html.admin_url(dispatcher.getControllerName()~'?'~name~'='~v)}}">{{t._(k)}}</a>
+                        {% for k,v in d.get(name)  %}
+                             <a class="dropdown-item" href="{{html.admin_url(dispatcher.getControllerName()~'?'~name~'='~k)}}">{{t._(v)}}</a>
                         {% endfor %}
                     </div>
-
                 {% else %}
-                    <a class="nav-link {{request.hasQuery(name) ? 'active':''}}" href="{{html.admin_url(dispatcher.getControllerName()~name~'='~lst)}}"></a>
+                    <a class="nav-link {{request.hasQuery(name) ? 'active':''}}" href="{{html.admin_url(dispatcher.getControllerName()~'?'~name~'='~list)}}">{{t._(name)}}</a>
                 {% endif %}
             </li>
         {% endfor %}

@@ -24,9 +24,15 @@ class DataController extends Controller
 
     /**
      * Colums for listing
-     * @var [type]
+     * @var array
      */
     public $list;
+
+    /**
+     * Translate Column
+     * @var array
+     */
+    public $translation;
 
     /**
      * Columns for matching to search keyword
@@ -149,12 +155,15 @@ class DataController extends Controller
             $this->view->columns = $this->list;
             $this->view->id = $this->id;
 
-            if (!empty($this->filter)) {
-                $this->view->filter = $this->filter;
-            }
+            $this->view->filter = $this->filter();
         } catch (\Exception $e) {
             echo '<pre>'.$e->getTraceAsString().'</pre>';
         }
+    }
+
+    public function filter()
+    {
+        return null;
     }
 
     public function newAction()

@@ -19,6 +19,7 @@ $messages =[
     'user_status_invalid' => '無効',
     'user_role' => 'アカウント権限',
     'user_role_admin' => '管理者',
+    'admin' => '管理者',
     'user_role_owner' => 'オーナー',
     'user_role_editor' => '編集者',
     'user_role_blogger' => '投稿者',
@@ -34,6 +35,8 @@ $messages =[
     'site_description' => 'description',
     'site_keywords' => 'keywords',
     'site_status' => 'ステータス',
+    'site_status_valid' => '有効',
+    'site_status_invalid' => '無効',
     'site_created_at' => '作成日',
     'site_update_at' => '更新日',
 
