@@ -9,7 +9,7 @@
         min-height: 100%;
     }
     body {
-        margin-bottom: 4rem;
+        margin-bottom: 5rem;
     }
     footer {
         position: absolute;

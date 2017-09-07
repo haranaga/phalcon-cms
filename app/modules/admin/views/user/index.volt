@@ -14,6 +14,6 @@
 </style>
 
 <div class="my-2">
-    {{partial('filter')}}    
+    {{partial('table_filter')}}    
 </div>
 {{partial('table')}}

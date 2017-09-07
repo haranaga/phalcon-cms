@@ -9,6 +9,7 @@ $messages =[
     'user' => 'ユーザー',
     'user_id' => 'ID',
     'user_name' => '氏名',
+    'user_display_name' => '表示名',
     'user_login' => 'ログイン名',
     'user_email' => 'メールアドレス',
     'user_password' => 'パスワード',
@@ -24,7 +25,7 @@ $messages =[
     'user_role_editor' => '編集者',
     'user_role_blogger' => '投稿者',
     'user_role_open' => '一般',
-    'user_role_ghost' => 'ゾンビ',
+    'user_role_ghost' => '架空',
     'user_image' => 'プロフィール画像',
 
     'site' => 'サイト',
@@ -55,6 +56,8 @@ $messages =[
     // Messages, Titles
     'All' => '全',
     'Already have an account?' => 'すでに登録済みの方',
+    'BulkAction' => '一括操作',
+    'Execute' => '実行',
     'Sign in' => 'ログイン',
     'Sign up' => '登録',
     'Search' => '検索',

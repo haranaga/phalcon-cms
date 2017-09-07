@@ -76,6 +76,12 @@ class Users extends ModelBase
     public $company_id;
 
     /**
+     * is in trash box
+     * @var integer 0 or 1
+     */
+    public $is_trash;
+
+    /**
      * Initialize method for model.
      */
     public function initialize()

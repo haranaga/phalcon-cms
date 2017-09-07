@@ -80,6 +80,7 @@ class DataController extends Controller
             echo 'Cms\DataController needs id_name property';
             exit;
         }
+        $this->view->id = $this->id;
     }
     public function indexAction()
     {
@@ -153,7 +154,6 @@ class DataController extends Controller
 
             $this->view->all = $all;
             $this->view->columns = $this->list;
-            $this->view->id = $this->id;
 
             $this->view->filter = $this->filter();
         } catch (\Exception $e) {
@@ -166,6 +166,10 @@ class DataController extends Controller
         return null;
     }
 
+    public function detailAction($id)
+    {
+        $this->view->item = $this->model::findFirst([$this->id.'= :id:', 'bind' => ['id' => $id]]);
+    }
     public function newAction()
     {
         $form = new $this->form();

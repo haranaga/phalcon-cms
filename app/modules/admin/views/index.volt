@@ -15,6 +15,14 @@
         <script src="https://unpkg.com/vue"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+        <style media="screen">
+            .btn-cell {
+                padding:0 !important;
+                vertical-align: middle !important;
+                text-align: center;
+            }
+        </style>
+
     </head>
     <body>
         {{partial('navbar')}}

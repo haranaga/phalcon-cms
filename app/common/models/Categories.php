@@ -34,6 +34,12 @@ class Categories extends \Phalcon\Mvc\Model
     public $site_id;
 
     /**
+     * is in trash box
+     * @var integer 0 or 1
+     */
+    public $is_trash;
+
+    /**
      * Initialize method for model.
      */
     public function initialize()

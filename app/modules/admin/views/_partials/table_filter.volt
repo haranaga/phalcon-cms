@@ -1,5 +1,5 @@
 
-<ul class="nav nav-tabs" style="font-size: 0.8rem;">
+<ul class="nav nav-tabs">
     <li class="nav-item">
         <a class="nav-link {{all ? 'active':''}}" href="{{html.admin_url(dispatcher.getControllerName())}}">{{t._('All')}}{{t._(dispatcher.getControllerName())}}</a>
     </li>
@@ -47,6 +47,6 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{request.hasQuery('archive') ? 'active': ''}}" href="{{html.admin_url(dispatcher.getControllerName()~'?archive=1')}}">{{t._('Archived')}}</a>
+        <a class="nav-link {{request.hasQuery('archive') ? 'active': ''}}" href="{{html.admin_url(dispatcher.getControllerName()~'?is_trash=1')}}">{{t._('Trash')}}</a>
     </li>
 </ul>
