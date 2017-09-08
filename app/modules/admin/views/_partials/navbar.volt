@@ -16,16 +16,6 @@
                     {{t._('site')}}
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    Menu3
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    Menu4
-                </a>
-            </li>
         </ul>
     </div>
 </nav>

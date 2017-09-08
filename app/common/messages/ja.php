@@ -29,10 +29,11 @@ $messages =[
     'user_image' => 'プロフィール画像',
 
     'site' => 'サイト',
+    'site_id' => 'ID',
     'site_name' => 'サイト名',
     'site_domain' => 'ドメイン',
     'site_url' => 'URL',
-    'site_title' => 'title',
+    'site_title' => 'タイトル',
     'site_description' => 'description',
     'site_keywords' => 'keywords',
     'site_status' => 'ステータス',
@@ -43,7 +44,7 @@ $messages =[
 
 
     // Action
-    'action_new' => '登録',
+    'action_new' => '新規登録',
     'action_edit' => '編集',
     'action_delete' => '削除',
     'action_duplicate' => '複製',

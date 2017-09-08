@@ -1,4 +1,4 @@
 {{content()}}
-<div class="hd-center hd-mg-4">
-    <a href="{{html.admin_url('user')}}">{{t._('user')}}</a>
+<div class="p-3">
+    <a href="{{html.admin_url(dispatcher.getControllerName())}}">{{t._(dispatcher.getControllerName())}}</a>
 </div>

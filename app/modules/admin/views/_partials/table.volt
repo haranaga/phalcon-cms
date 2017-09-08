@@ -5,10 +5,17 @@
         white-space: nowrap;
         text-overflow: ellipsis;
     }
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity 1.0s;
+    }
+    .fade-enter, .fade-leave-to  {
+      opacity: 0;
+    }
+
 </style>
 <div id="tableApp">
     {{partial('table_toolbar')}}
-    <table class="table table-responsive table-bordered">
+    <table class="table table-responsive table-bordered mb-1">
         <thead>
             {# check box #}
             <th><input type="checkbox" name="checkall" id="checkAll" :value="1" @change="toggleCheck()" v-model="checkAll"></th>
@@ -37,10 +44,10 @@
         {% for item in page.items  %}
             <tr>
                 <td>
-                    <input type="checkbox" class="form-control" value="{{item.offsetGet(id)}}" v-model="checkedId">
+                    <input type="checkbox" class="form-control" value="{{item.offsetGet(id)}}" v-model="checkedId" @change="somethingChecked = true">
                 </td>
                 <td class="btn-cell">
-                    <a class="btn btn-success btn-sm" href="{{html.admin_url(dispatcher.getControllerName()~'/edit/'~item.offsetGet(id))}}">
+                    <a class="btn btn-outline-success btn-sm" href="{{html.admin_url(dispatcher.getControllerName()~'/edit/'~item.offsetGet(id))}}">
                         <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
                     </a>
                 </td>
@@ -62,7 +69,7 @@
                 {% endfor %}
 
                 <td class="btn-cell">
-                    <a class="btn btn-danger btn-sm" href="{{html.admin_url(dispatcher.getControllerName()~'/trash/'~item.user_id)}}">
+                    <a class="btn btn-outline-danger btn-sm" href="{{html.admin_url(dispatcher.getControllerName()~'/trash/'~item.user_id)}}">
                         <i class="fa fa-trash fa-fw" aria-hidden="true"></i>
                     </a>
                 </td>
@@ -106,6 +113,7 @@
                 rows: {{page.items|json_encode}},
                 checkedId:[],
                 checkAll: 0,
+                somethingChecked: false,
             },
             methods: {
                 toggleCheck: function(event) {
@@ -114,6 +122,7 @@
                         this.rows.forEach((row, i) => {
                             this.checkedId.push(row.{{id}});
                         });
+                        this.somethingChecked = true;
                     } else {
                         this.checkedId = [];
                     }

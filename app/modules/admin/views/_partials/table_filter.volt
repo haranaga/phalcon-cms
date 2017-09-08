@@ -37,7 +37,7 @@
             <form action="{{html.admin_url(dispatcher.getControllerName())}}" method="get">
             <div class="form-group p-2">
                 <div class="input-group">
-                  <input id="searchBox" name="search" type="text" class="form-control" style="width:100px;" value="{{request.getQuery('search')}}">
+                  <input id="searchBox" name="search" type="text" class="form-control" style="width:200px;" value="{{request.getQuery('search')}}">
                   <span class="input-group-btn">
                     <button class="btn btn-secondary" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                   </span>

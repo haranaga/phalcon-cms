@@ -1,14 +1,20 @@
-{{content()}}
+<div class="row justify-content-center">
+    <div class="col-sm-6">
 
-{{form(html.admin_url('site/new'), 'method':'post','class':'hd-form hd-form-block')}}
-    {{form.render('site_id')}}
-    {{form.renderHD('site_name')}}
-    {{form.renderHD('site_domain')}}
-    {{form.renderHD('site_title')}}
-    {{form.renderHD('site_description')}}
-    {{form.renderHD('site_keywords')}}
-    {{form.renderHD('site_url')}}
-    <div class="hd-form-group">
-        <button class="hd-btn-default hd-right" type="submit">{{t._('action_new')}}</button>
+    {{content()}}
+
+    {{form(html.admin_url('site/new'), 'method':'post','class':'hd-form hd-form-block')}}
+        {{form.render('site_id')}}
+        {{form.renderBS('site_name')}}
+        {{form.renderBS('site_domain')}}
+        {{form.renderBS('site_title')}}
+        {{form.renderBS('site_description')}}
+        {{form.renderBS('site_keywords')}}
+        {{form.renderBS('site_url')}}
+        <div class="hd-form-group">
+            <button class="btn btn-primary button-large" type="submit">{{t._('action_new')}}</button>
+        </div>
+    {{endForm()}}
+
     </div>
-{{endForm()}}
+</div>
