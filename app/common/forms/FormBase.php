@@ -239,7 +239,7 @@ class FormBase extends Form
         $error_class = '';
         $error_message = '';
         if ($has_error) {
-            $error_class = 'uk-form-danger';
+            $error_class = 'hd-color-error';
             $error_message = '';
             foreach ($msg as $message) {
                 $error_message .= '<p>'.$message.'</p>';
@@ -252,13 +252,17 @@ class FormBase extends Form
             $help = '<p>'.$options['help'].'</p>';
         }
 
+        $msg_tag = '';
+        if (!empty($help) or !empty($error_message)) {
+            $msg_tag = '<div class="hd-form-message">'.$help.$error_message.'</div>';
+        }
+
         $out = '
-        <div class="uk-margin '. $error_class.'">
-            <label for="'.$name.'" class="uk-form-label">'.
+        <div class="hd-form-group '. $error_class.'">
+            <label for="'.$name.'" class="hd-form-label">'.
             $this->t->_($name).$required_mark.
             '</label>
-            '.$element->render().
-            '<div class="hd-form-message" id="form-message-'.$name.'">'.$help.$error_message.'</div>
+            '.$element->render().$msg_tag.'
         </div>
         ';
 

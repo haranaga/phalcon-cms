@@ -6,14 +6,14 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item {{dispatcher.getControllerName() == 'user' ? ' active': ''}}">
-                <a class="nav-link" href="{{html.admin_url('user')}}">
-                    {{t._('user')}}
-                </a>
-            </li>
             <li class="nav-item {{dispatcher.getControllerName() == 'site' ? 'active': ''}}">
                 <a class="nav-link" href="{{html.admin_url('site')}}">
                     {{t._('site')}}
+                </a>
+            </li>
+            <li class="nav-item {{dispatcher.getControllerName() == 'user' ? ' active': ''}}">
+                <a class="nav-link" href="{{html.admin_url('user')}}">
+                    {{t._('user')}}
                 </a>
             </li>
         </ul>

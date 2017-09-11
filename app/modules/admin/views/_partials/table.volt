@@ -54,7 +54,7 @@
 
                 {% for col in columns %}
                     <td>
-                        {% if loop.index == 2 %}
+                        {% if loop.index <= 2 %}
                             <a href="{{html.admin_url(dispatcher.getControllerName()~'/detail/'~item.offsetGet(id))}}">
                         {% endif %}
                         {% if d.get(col) is not empty %}
@@ -63,7 +63,7 @@
                             {{item.offsetGet(col)}}
                         {% endif %}
                     </td>
-                    {% if loop.index == 2 %}
+                    {% if loop.index <= 2 %}
                         </a>
                     {% endif %}
                 {% endfor %}
