@@ -27,4 +27,10 @@ class UserController extends DataController
             'user_login' => 'morita'
         ];
     }
+
+    public function newAction()
+    {
+        $this->validation = 'Cms\Validations\UserCreateValidation';
+        parent::newAction();
+    }
 }

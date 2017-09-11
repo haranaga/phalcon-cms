@@ -1,5 +1,8 @@
 <?php namespace Cms\Models;
 
+use Phalcon\Validation;
+use Phalcon\Validation\Validator\Uniqueness;
+
 class Users extends ModelBase
 {
 
@@ -107,6 +110,33 @@ class Users extends ModelBase
             if ($this->hasChanged('user_password')) {
                 $this->user_password = $this->getDI()->get('security')->hash($this->user_password);
             }
+
+            $validation = new Validation();
+
+            if ($this->hasChanged('user_login')) {
+                $validation->add(
+                    'user_login',
+                    new Uniqueness([
+                        "model"   =>  $this,
+                        "field"  => ['site_id','user_login'],
+                        "except" => ["user_status" => USER_STATUS_INVALID,],
+                        "message" => $this->getDI()->getShared('t')->_('User exists', ['name' => $this->getDI()->getShared('t')->_('user_login')]),
+                    ])
+                );
+            }
+            if ($this->hasChanged('user_email')) {
+                $validation->add(
+                    'user_email',
+                    new Uniqueness([
+                        "model"   =>  $this,
+                        "field"  => ['site_id','user_email'],
+                        "except" => ["user_status" => USER_STATUS_INVALID,],
+                        "message" => $this->getDI()->getShared('t')->_('User exists', ['name' => $this->getDI()->getShared('t')->_('user_email')]),
+                    ])
+                );
+            }
+
+            return $this->validate($validation);
         }
     }
 
