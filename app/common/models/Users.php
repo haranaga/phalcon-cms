@@ -89,6 +89,8 @@ class Users extends ModelBase
      */
     public function initialize()
     {
+        parent::initialize();
+
         $this->keepSnapshots(true);
 
         // $this->setSchema("phalcon-cms");

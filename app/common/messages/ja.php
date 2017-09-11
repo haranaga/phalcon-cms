@@ -62,6 +62,9 @@ $messages =[
     'Sign in' => 'ログイン',
     'Sign up' => '登録',
     'Search' => '検索',
+    'Edit' => '編集',
+    'Trash' => 'ゴミ箱',
+    'Recycle' => '再利用',
     'is required' => '%name%を入力してください',
     'is alphanumeric characters' => '%name%は半角英数字です',
     'is email format' => '正しいEメールアドレスを入力してください',
@@ -76,6 +79,7 @@ $messages =[
     'Create success' => '新規作成しました',
     'Done' => '完了',
     'User exists' => '%name%はすでに登録されています',
+    'Site domain exists' => '%name%はすでに登録されています',
     'Page' => '%name%ページ',
     'Total' => '全%name%件',
 ];

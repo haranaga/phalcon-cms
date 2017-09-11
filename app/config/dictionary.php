@@ -1,6 +1,10 @@
 <?php
 
 return new \Phalcon\Config([
+    'is_trash' => [
+        IS_TRASH => 'Is trash',
+        IS_NOT_TRASH => 'Is not trash',
+    ],
     'site_status' => [
         SITE_STATUS_INVALID => 'site_status_invalid',
         SITE_STATUS_VALID => 'site_status_valid'

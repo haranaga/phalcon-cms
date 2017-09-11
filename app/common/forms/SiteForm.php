@@ -16,5 +16,6 @@ class SiteForm extends FormBase
         'site_keywords' => 'Text',
         'site_created_at' => 'Text',
         'site_update_at' => 'Text',
+        'site_status' => 'SiteStatus',
     ];
 }

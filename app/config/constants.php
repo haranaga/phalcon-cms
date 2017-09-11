@@ -7,6 +7,10 @@ define('C', 'controller');
 define('A', 'action');
 define('P', 'params');
 
+// trash Data
+define('IS_NOT_TRASH', 0);
+define('IS_TRASH', 1);
+
 // site site status
 define('SITE_STATUS_INVALID', 0);
 define('SITE_STATUS_VALID', 1);

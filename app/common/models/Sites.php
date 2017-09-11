@@ -1,5 +1,8 @@
 <?php namespace Cms\Models;
 
+use Phalcon\Validation;
+use Phalcon\Validation\Validator\Uniqueness;
+
 class Sites extends ModelBase
 {
 
@@ -88,6 +91,10 @@ class Sites extends ModelBase
      */
     public function initialize()
     {
+        parent::initialize();
+
+        $this->keepSnapshots(true);
+
         // $this->setSchema("phalcon-cms");
         $this->setSource("sites");
         $this->hasMany('site_id', 'Articles', 'site_id', ['alias' => 'Articles']);
@@ -97,6 +104,25 @@ class Sites extends ModelBase
         $this->belongsTo('user_id', 'Cms\Models\Users', 'user_id', ['alias' => 'Users']);
     }
 
+    public function beforeUpdate()
+    {
+        $validation = new Validation();
+
+        if ($this->hasSnapshotData()) {
+            if ($this->hasChanged('site_domain')) {
+                $validation->add(
+                    'site_domain',
+                    new Uniqueness([
+                        "model"   =>  $this,
+                        "field"  => 'site_domain',
+                        "except" => ["site_status" => SITE_STATUS_INVALID,],
+                        "message" => $this->getDI()->getShared('t')->_('Site domain exists', ['name' => $this->getDI()->getShared('t')->_('site_domain')]),
+                    ])
+                );
+            }
+            return $this->validate($validation);
+        }
+    }
     /**
      * Allows to query a set of records that match the specified conditions
      *

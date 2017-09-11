@@ -95,6 +95,13 @@ class DataController extends Controller
                 $query->columns($this->list);
             }
 
+            // is trash
+            if ($this->request->hasQuery('is_trash') and $this->request->getQuery('is_trash')) {
+                $query->andWhere('is_trash = '.IS_TRASH);
+            } else {
+                $query->andWhere('is_trash = '.IS_NOT_TRASH);
+            }
+            
             // filter by colums query parameters
             foreach (get_class_vars($this->model) as $key=> $val) {
                 if ($this->request->hasQuery($key)) {
@@ -222,6 +229,23 @@ class DataController extends Controller
         }
     }
 
+    public function trashAction()
+    {
+        if ($this->request->isPost()) {
+            $id = $this->request->getPost($this->id);
+            $origin = $this->model::findFirst($this->id.' = ' .$id);
+            if ($origin) {
+                $origin->is_trash = IS_TRASH;
+                if ($origin->save()) {
+                    $this->flash->success('Trash success');
+                    return $this->dispatcher->forward([
+                        C=>$this->dispatcher->getControllerName(),
+                        A=>'done',
+                    ]);
+                }
+            }
+        }
+    }
     public function doneAction()
     {
     }

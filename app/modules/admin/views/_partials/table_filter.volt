@@ -47,6 +47,6 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{request.hasQuery('archive') ? 'active': ''}}" href="{{html.admin_url(dispatcher.getControllerName()~'?is_trash=1')}}">{{t._('Trash')}}</a>
+        <a class="nav-link {{request.hasQuery('is_trash') ? 'active': ''}}" href="{{html.admin_url(dispatcher.getControllerName()~'?is_trash=1')}}">{{t._('Trash')}}</a>
     </li>
 </ul>

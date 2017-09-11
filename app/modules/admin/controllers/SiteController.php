@@ -25,4 +25,9 @@ class SiteController extends DataController
             'site_status' => $this->d->site_status->toArray(),
         ];
     }
+    public function newAction()
+    {
+        $this->validation = 'Cms\Validations\SiteCreateValidation';
+        parent::newAction();
+    }
 }

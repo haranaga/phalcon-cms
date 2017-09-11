@@ -47,7 +47,7 @@
                     <input type="checkbox" class="form-control" value="{{item.offsetGet(id)}}" v-model="checkedId" @change="somethingChecked = true">
                 </td>
                 <td class="btn-cell">
-                    <a class="btn btn-outline-success btn-sm" href="{{html.admin_url(dispatcher.getControllerName()~'/edit/'~item.offsetGet(id))}}">
+                    <a class="btn btn-outline-success btn-sm" href="{{html.admin_url(dispatcher.getControllerName()~'/edit/'~item.offsetGet(id))}}" data-toggle="tooltip" data-placement="bottom" title="{{t._('Edit')}}">
                         <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
                     </a>
                 </td>
@@ -69,9 +69,15 @@
                 {% endfor %}
 
                 <td class="btn-cell">
-                    <a class="btn btn-outline-danger btn-sm" href="{{html.admin_url(dispatcher.getControllerName()~'/trash/'~item.user_id)}}">
-                        <i class="fa fa-trash fa-fw" aria-hidden="true"></i>
-                    </a>
+                    {% if request.getQuery('is_trash') == 1 %}
+                        <a class="btn btn-outline-primary btn-sm" href="#" @click="trash({{item.readAttribute(id)}},$event)" data-toggle="tooltip" data-placement="bottom" title="{{t._('Recycle')}}">
+                            <i class="fa fa-recycle" aria-hidden="true"></i>
+                        </a>
+                    {% else %}
+                        <a class="btn btn-outline-danger btn-sm" href="#" @click="trash({{item.readAttribute(id)}},$event)" data-toggle="tooltip" data-placement="bottom" title="{{t._('Trash')}}">
+                            <i class="fa fa-trash fa-fw" aria-hidden="true"></i>
+                        </a>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}
@@ -104,7 +110,9 @@
 </div>
 
     <script type="text/javascript">
-
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
         var vm = new Vue({
             delimiters: ['${','}'],
             el: '#tableApp',
@@ -125,6 +133,23 @@
                         this.somethingChecked = true;
                     } else {
                         this.checkedId = [];
+                    }
+                },
+                trash: function(id,event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    var yes = confirm(id+":"+"{{t._('Trash?')}}");
+                    if (yes) {
+                        var form = document.createElement("form");
+                        form.action = "{{html.admin_url(dispatcher.getControllerName()~'/trash')}}";
+                        var input = document.createElement("input");
+                        input.setAttribute('type', 'hidden');
+                        input.setAttribute('name', '{{id}}');
+                        input.setAttribute('value', id);
+                        form.appendChild(input);
+                        form.setAttribute('method', 'post');
+                        document.body.appendChild(form);
+                        form.submit();
                     }
                 }
             }

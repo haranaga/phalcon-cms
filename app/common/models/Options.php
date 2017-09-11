@@ -1,6 +1,6 @@
 <?php namespace Cms\Models;
 
-class Options extends \Phalcon\Mvc\Model
+class Options extends ModelBase
 {
 
     /**
@@ -38,6 +38,8 @@ class Options extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
+        parent::initialize();
+
         // $this->setSchema("phalcon-cms");
         $this->setSource("options");
         $this->belongsTo('site_id', 'Cms\Models\Sites', 'site_id', ['alias' => 'Sites']);
@@ -74,5 +76,4 @@ class Options extends \Phalcon\Mvc\Model
     {
         return 'options';
     }
-
 }

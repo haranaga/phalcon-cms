@@ -1,6 +1,6 @@
 <?php namespace Cms\Models;
 
-class Articles extends \Phalcon\Mvc\Model
+class Articles extends ModelBase
 {
 
     /**
@@ -100,6 +100,8 @@ class Articles extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
+        parent::initialize();
+
         // $this->setSchema("phalcon-cms");
         $this->setSource("articles");
         $this->hasMany('article_id', 'ArticlesArticles', 'article_id', ['alias' => 'ArticlesArticles']);

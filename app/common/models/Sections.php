@@ -1,6 +1,6 @@
 <?php namespace Cms\Models;
 
-class Sections extends \Phalcon\Mvc\Model
+class Sections extends ModelBase
 {
 
     /**
@@ -45,6 +45,8 @@ class Sections extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
+        parent::initialize();
+
         // $this->setSchema("phalcon-cms");
         $this->setSource("sections");
         $this->belongsTo('article_id', 'Cms\Models\Articles', 'article_id', ['alias' => 'Articles']);
@@ -81,5 +83,4 @@ class Sections extends \Phalcon\Mvc\Model
     {
         return 'sections';
     }
-
 }

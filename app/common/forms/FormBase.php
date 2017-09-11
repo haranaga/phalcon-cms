@@ -33,6 +33,7 @@ class FormBase extends Form
         'File' => 'Phalcon\Forms\Element\File',
         'UserRole' => 'Cms\Forms\Elements\UserRole',
         'UserStatus' => 'Cms\Forms\Elements\UserStatus',
+        'SiteStatus' => 'Cms\Forms\Elements\SiteStatus',
     ];
 
     public function initialize($element = null, $options = null)
