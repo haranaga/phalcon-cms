@@ -106,6 +106,16 @@ class UsersMigration_100 extends Migration
                             'size' => 20,
                             'after' => 'user_image'
                         ]
+                    ),
+                    new Column(
+                        'is_trash',
+                        [
+                            'type' => Column::TYPE_INTEGER,
+                            'default' => "0",
+                            'notNull' => true,
+                            'size' => 11,
+                            'after' => 'site_id'
+                        ]
                     )
                 ],
                 'indexes' => [
@@ -113,7 +123,7 @@ class UsersMigration_100 extends Migration
                 ],
                 'options' => [
                     'TABLE_TYPE' => 'BASE TABLE',
-                    'AUTO_INCREMENT' => '',
+                    'AUTO_INCREMENT' => '30',
                     'ENGINE' => 'InnoDB',
                     'TABLE_COLLATION' => 'utf8mb4_general_ci'
                 ],
