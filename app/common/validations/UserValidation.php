@@ -9,12 +9,12 @@ class UserValidation extends Validation
 {
     public function initialize()
     {
-        $this->add(
-            'user_login',
-            new Validator\PresenceOf([
-                'message'=> $this->t->_('is required', ['name' => $this->t->_('user_login')]),
-            ])
-        );
+        // $this->add(
+        //     'user_login',
+        //     new Validator\PresenceOf([
+        //         'message'=> $this->t->_('is required', ['name' => $this->t->_('user_login')]),
+        //     ])
+        // );
 
         $this->add(
             'user_email',
@@ -47,13 +47,13 @@ class UserValidation extends Validation
             ])
         );
 
-        $this->add(
-            'user_login',
-            new Validator\Regex([
-                'pattern'=>'/[0-9a-zA-Z_\.\@\-]+/',
-                'message'=> $this->t->_('is alphanumeric characters', ['name'=>$this->t->_('user_login')]).' or ( . _ @ - )',
-            ])
-        );
+        // $this->add(
+        //     'user_login',
+        //     new Validator\Regex([
+        //         'pattern'=>'/[0-9a-zA-Z_\.\@\-]+/',
+        //         'message'=> $this->t->_('is alphanumeric characters', ['name'=>$this->t->_('user_login')]).' or ( . _ @ - )',
+        //     ])
+        // );
 
         // $this->add(
         //     "user_login",

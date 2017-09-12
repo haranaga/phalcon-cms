@@ -16,7 +16,7 @@
                     {% endif %}
                 </div>
 
-                {{form.renderHD('user_login')}}
+                {#{{form.renderHD('user_login')}}#}
                 {{form.renderHD('user_email')}}
                 <div v-bind:class="{'hd-color-error': color.error, 'hd-color-safe': color.success}">
                     {{form.renderHD('user_password',['@keyup':'checkPasswordStrength','help':'${message.user_password}'])}}

@@ -8,7 +8,7 @@ class UserController extends DataController
 {
     public $id     = 'user_id';
     public $model  = 'Cms\Models\Users';
-    public $list   = ['user_id','user_name','user_login', 'user_email', 'user_role', 'user_status' ];
+    public $list   = ['user_id','user_email', 'user_name','user_role','user_login', 'user_status' ];
     public $search = ['user_name', 'user_login', 'user_email'];
     public $form   = 'Cms\Forms\UserForm';
     public $validation = 'Cms\Validations\UserValidation';
