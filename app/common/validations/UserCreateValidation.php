@@ -19,14 +19,14 @@ class UserCreateValidation extends UserValidation
             ])
         );
 
-        $this->add(
-            "user_login",
-            new Validator\Uniqueness([
-                "model"   =>  new Users(),
-                "field"  => ['site_id','user_login'],
-                "except" => ["user_status" => USER_STATUS_INVALID],
-                "message" => $this->t->_('User exists', ['name' => $this->t->_('user_login')]),
-            ])
-        );
+        // $this->add(
+        //     "user_login",
+        //     new Validator\Uniqueness([
+        //         "model"   =>  new Users(),
+        //         "field"  => ['site_id','user_login'],
+        //         "except" => ["user_status" => USER_STATUS_INVALID],
+        //         "message" => $this->t->_('User exists', ['name' => $this->t->_('user_login')]),
+        //     ])
+        // );
     }
 }
