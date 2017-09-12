@@ -34,7 +34,6 @@ class UsersMigration_100 extends Migration
                         'user_login',
                         [
                             'type' => Column::TYPE_VARCHAR,
-                            'notNull' => true,
                             'size' => 100,
                             'after' => 'user_id'
                         ]
@@ -123,7 +122,7 @@ class UsersMigration_100 extends Migration
                 ],
                 'options' => [
                     'TABLE_TYPE' => 'BASE TABLE',
-                    'AUTO_INCREMENT' => '30',
+                    'AUTO_INCREMENT' => '31',
                     'ENGINE' => 'InnoDB',
                     'TABLE_COLLATION' => 'utf8mb4_general_ci'
                 ],
