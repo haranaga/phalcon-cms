@@ -4,6 +4,7 @@ use Phalcon\Loader;
 use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Db\Adapter\Pdo\Mysql;
+use Phalcon\Config;
 
 
 use Cms\Language;
@@ -12,7 +13,12 @@ use Cms\Language;
  * Shared configuration service
  */
 $di->setShared('config', function () {
-    return include APP_PATH . "/config/config.php";
+    $config =  include APP_PATH . "/config/config.php";
+    if (file_exists(APP_PATH . '/config/setup.php')) {
+        $config->merge(new Config(include APP_PATH . '/config/setup.php'));
+    }
+
+    return $config;
 });
 
 /**

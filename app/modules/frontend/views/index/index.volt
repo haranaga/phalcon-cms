@@ -1,4 +1,5 @@
 <section>
+    {{content()}}
     <h3>{{link_to('_admin', 'Admin')}}</h3>
     <ul>
         <li>{{link_to('_admin/site',t._('site'))}}</li>

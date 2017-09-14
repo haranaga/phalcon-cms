@@ -56,4 +56,9 @@ class CookieSession extends \Phalcon\Mvc\User\Component
     {
         $this->_key = $key;
     }
+
+    public function extendExpire($index, $second)
+    {
+        $this->cookies->set($this->_key.'_'.$index, $this->cookies->get($this->_key.'_'.$index), time() + $second, '/');
+    }
 }

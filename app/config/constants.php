@@ -26,3 +26,4 @@ define('USER_ROLE_EDITOR', 'user_role_editor');
 define('USER_ROLE_BLOGGER', 'user_role_blogger');
 define('USER_ROLE_OPEN', 'user_role_open');
 define('USER_ROLE_GHOST', 'user_role_ghost');
+define('USER_ROLE_GUEST', 'user_role_guest');

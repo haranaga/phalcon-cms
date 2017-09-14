@@ -6,6 +6,7 @@ use Phalcon\Loader;
 use Phalcon\Mvc\View;
 use Phalcon\Mvc\View\Engine\Php as PhpEngine;
 use Phalcon\Mvc\ModuleDefinitionInterface;
+use Phalcon\Flash\Direct;
 
 class Module implements ModuleDefinitionInterface
 {
@@ -51,6 +52,18 @@ class Module implements ModuleDefinitionInterface
             $view->setVar('t', $this->getT());
 
             return $view;
+        });
+
+        /**
+         * Register the session flash service with the Twitter Bootstrap classes
+         */
+        $di->set('flash', function () {
+            return new Direct([
+                'error'   => 'hd-alert hd-color-error',
+                'success' => 'hd-alert hd-color-success',
+                'notice'  => 'hd-alert hd-color-notice',
+                'warning' => 'hd-alert hd-color-warning'
+            ]);
         });
     }
 }

@@ -16,6 +16,7 @@ use Cms\Assets;
 use Cms\CookieSession;
 use Cms\Language;
 use Cms\Html;
+use Cms\SessionPlugin;
 
 /**
  * mobile detect
@@ -91,6 +92,12 @@ $di->setShared('dispatcher', function () {
     $dispatcher = new Dispatcher();
     $eventsManager = $this->getShared('eventsManager');
 
+    // login check
+    $eventsManager->attach(
+        "dispatch:beforeExecuteRoute",
+        new SessionPlugin()
+    );
+
     // error handling
     $eventsManager->attach(
         "dispatch:beforeException",
@@ -125,6 +132,7 @@ $di->setShared('cookieSession', function () {
     $cs->setExpire(86400*365*3); // 3year
     return $cs;
 });
+
 
 /**
  * Setting up the common view component

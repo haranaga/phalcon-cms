@@ -5,6 +5,7 @@ logs/*
 .sync-config.cson
 public/upload/*
 app/config/config.php
+app/config/setup.php
 vendor/*
 .DS_Store
 *.css.map
