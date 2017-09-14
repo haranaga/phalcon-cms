@@ -14,7 +14,7 @@
     </head>
     <body class="hd-sticky-footer">
         <header>
-            <h1 class="hd-center hd-mgtb-1"><a href="{{url('')}}">{{config.name}}</a></h1>
+            {{partial('header')}}
         </header>
         <div class="hd-wrapper">
             <div class="hd-container">
@@ -22,9 +22,7 @@
             </div>
         </div>
         <footer>
-            <div class="hd-center">
-                Powered by {{config.name}}
-            </div>
+            {{partial('footer')}}
         </footer>
     </body>
 </html>

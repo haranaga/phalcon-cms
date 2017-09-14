@@ -16,6 +16,11 @@
                     {{t._('user')}}
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('_/')}}">
+                    Frontend
+                </a>
+            </li>
         </ul>
     </div>
 </nav>
