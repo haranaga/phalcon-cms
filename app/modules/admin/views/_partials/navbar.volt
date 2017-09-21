@@ -21,6 +21,11 @@
                     Frontend
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    {{login.user_email}}
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

@@ -1,6 +1,6 @@
 <div class="hd-row">
-    <div class="col-l-6 col-m-3"></div>
-    <div class="col-l-12 col-m-18">
+    <div class="col-l-8 col-m-6 col-s-3"></div>
+    <div class="col-l-8 col-m-12 col-s-18">
         <h3 class="hd-mgt-1 hd-mgb-2 hd-center">{{t._('Sign in')}}</h3>
         <form class="hd-form hd-form-block" action="{{url('_/user/signin')}}" method="post" autocomplete="off">
             <div class="hd-form-group">
@@ -21,10 +21,10 @@
             {{form.renderHD('user_email')}}
             {{form.renderHD('user_password')}}
 
-            <div class="hd-form-group">
-                <button type="submit" class="hd-mgt-1 hd-right">{{t._('Sign in')}}</button>
+            <div class="hd-form-group hd-mg-3">
+                <button type="submit" class="hd-mgt-1 hd-center">{{t._('Sign in')}}</button>
             </div>
         </form>
     </div>
-    <div class="col-l-6 col-m-3"></div>
+    <div class="col-l-8 col-m-6 col-s-2"></div>
 </div>

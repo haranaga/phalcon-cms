@@ -93,9 +93,11 @@ $di->setShared('dispatcher', function () {
     $eventsManager = $this->getShared('eventsManager');
 
     // login check
+    $session = new SessionPlugin();
+    $session->setExtendSecond(3600);
     $eventsManager->attach(
         "dispatch:beforeExecuteRoute",
-        new SessionPlugin()
+        $session
     );
 
     // error handling

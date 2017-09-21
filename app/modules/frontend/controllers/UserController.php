@@ -12,6 +12,7 @@ class UserController extends ControllerBase
     public function indexAction()
     {
     }
+    
     public function signinAction()
     {
         $validation = new Validations\UserValidation();
@@ -33,7 +34,7 @@ class UserController extends ControllerBase
                     if ($this->security->checkHash($this->request->getPost('user_password'), $user->user_password)) {
                         $this->flash->success('password correct');
 
-                        $this->cookieSession->setExpire(60);
+                        $this->cookieSession->setExpire(600);
                         $this->cookieSession->set('login', serialize($user->toArray()));
 
                         // $this->flash->success('signed in');
