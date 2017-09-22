@@ -18,16 +18,6 @@ if ($config->server->frontend) {
     $router->mount($frontend_router);
 }
 
-if ($config->server->backend) {
-    $backend = include APP_PATH.'/config/routes_backend.php';
-    $backend_router = new Group([N=>'Cms\Modules\Backend\Controllers', M=>'backend']);
-    $backend_router->setPrefix('/_backend');
-    foreach ($backend  as $url => $route) {
-        $backend_router->add($url, $route);
-    }
-    $router->mount($backend_router);
-}
-
 if ($config->server->admin) {
     $admin = include APP_PATH.'/config/routes_admin.php';
     $admin_router = new Group([N=>'Cms\Modules\Admin\Controllers', M=>'admin']);

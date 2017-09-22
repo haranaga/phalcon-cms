@@ -12,7 +12,7 @@ class UserController extends ControllerBase
     public function indexAction()
     {
     }
-    
+
     public function signinAction()
     {
         $validation = new Validations\UserValidation();
@@ -62,6 +62,7 @@ class UserController extends ControllerBase
     {
         $validation = new Validations\UserSignupValidation();
         $form = new UserSignupForm();
+        $form->get('user_role')->setDefault(USER_ROLE_OWNER);
         $form->setValidation($validation);
 
         // register
@@ -71,7 +72,7 @@ class UserController extends ControllerBase
                 $user->assign($this->request->getPost());
                 $user->user_status = USER_STATUS_VALID;
                 $user->site_id = 0;
-                $user->user_role = USER_ROLE_OPEN;
+                $user->user_role = USER_ROLE_OWNER;
 
                 try {
                     if ($user->save()) {

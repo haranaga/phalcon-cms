@@ -25,7 +25,6 @@ $loader->registerNamespaces([
  */
 $loader->registerClasses([
     'Cms\Modules\Frontend\Module' => APP_PATH . '/modules/frontend/Module.php',
-    'Cms\Modules\Backend\Module' => APP_PATH . '/modules/backend/Module.php',
     'Cms\Modules\Admin\Module' => APP_PATH . '/modules/admin/Module.php',
     'Cms\Modules\Api\Module' => APP_PATH . '/modules/api/Module.php',
     'Cms\Modules\Cli\Module'      => APP_PATH . '/modules/cli/Module.php'

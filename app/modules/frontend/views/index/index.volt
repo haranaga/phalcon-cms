@@ -7,7 +7,7 @@
     </ul>
     <h3>{{link_to('_/', 'Frontend')}}</h3>
     <ul>
-        <li>{{link_to('_/user/signup',t._('Sign up'))}}</li>
-        <li>{{link_to('_/user/signin',t._('Sign in'))}}</li>
+        <li>{{link_to('_/user/signup',t._('user_role_owner')~t._('Sign up'))}}</li>
+        <li>{{link_to('_/user/signin',t._('user_role_owner')~t._('Sign in'))}}</li>
     </ul>
 </section>

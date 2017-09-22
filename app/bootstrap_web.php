@@ -52,7 +52,6 @@ $debug->listen();
      */
     $application->registerModules([
         'frontend' => ['className' => 'Cms\Modules\Frontend\Module'],
-        'backend' => ['className' => 'Cms\Modules\Backend\Module'],
         'api' => ['className' => 'Cms\Modules\Api\Module'],
         'admin' => ['className' => 'Cms\Modules\Admin\Module'],
     ]);

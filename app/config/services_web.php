@@ -139,22 +139,22 @@ $di->setShared('cookieSession', function () {
 /**
  * Setting up the common view component
  */
-$di->setShared('pview', function () {
-    $view = new SimpleView();
-    // $view = new View();
-    $view->setDI($this);
-    $view->setViewsDir(APP_PATH . '/common/views/');
-    // $view->setRenderLevel(View::LEVEL_ACTION_VIEW);
-
-    $view->registerEngines([
-        '.volt'  => 'voltShared',
-        '.phtml' => PhpEngine::class
-    ]);
-
-    $view->setVar('t', $this->getT());
-
-    return $view;
-});
+// $di->setShared('pview', function () {
+//     $view = new SimpleView();
+//     // $view = new View();
+//     $view->setDI($this);
+//     $view->setViewsDir(APP_PATH . '/common/views/');
+//     // $view->setRenderLevel(View::LEVEL_ACTION_VIEW);
+//
+//     $view->registerEngines([
+//         '.volt'  => 'voltShared',
+//         '.phtml' => PhpEngine::class
+//     ]);
+//
+//     $view->setVar('t', $this->getT());
+//
+//     return $view;
+// });
 
 /**
  * Register the session flash service with the Twitter Bootstrap classes

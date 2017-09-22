@@ -2,10 +2,9 @@
     <div class="hd-row">
         <div class="col-l-6 col-m-3"></div>
         <div class="col-l-12 col-m-18">
-            <h3 class="hd-mgt-1 hd-mgb-2 hd-center">{{t._('Sign up')}}</h3>
+            <h3 class="hd-mgt-1 hd-mgb-2 hd-center">{{t._('user_role_owner')~t._('Sign up')}}</h3>
             {{content()}}
             <form class="hd-form hd-form-block" action="{{url('_/user/signup')}}" method="post" autocomplete="off">
-
                 <div class="hd-form-group">
                     {% if messages is not empty %}
                         <ul class="hd-mgb-1 hd-color-error">
@@ -17,6 +16,7 @@
                 </div>
 
                 {#{{form.renderHD('user_login')}}#}
+                {#{{form.renderHD('user_role')}}#}
                 {{form.renderHD('user_email')}}
                 <div v-bind:class="{'hd-color-error': color.error, 'hd-color-safe': color.success}">
                     {{form.renderHD('user_password',['@keyup':'checkPasswordStrength','help':'${message.user_password}'])}}
