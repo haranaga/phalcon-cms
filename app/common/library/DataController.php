@@ -98,10 +98,11 @@ class DataController extends Controller
             // is trash
             if ($this->request->hasQuery('is_trash') and $this->request->getQuery('is_trash')) {
                 $query->andWhere('is_trash = '.IS_TRASH);
+                $all = false;
             } else {
                 $query->andWhere('is_trash = '.IS_NOT_TRASH);
             }
-            
+
             // filter by colums query parameters
             foreach (get_class_vars($this->model) as $key=> $val) {
                 if ($this->request->hasQuery($key)) {
