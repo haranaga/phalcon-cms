@@ -76,6 +76,21 @@ class UserController extends ControllerBase
 
                 try {
                     if ($user->save()) {
+                        if ($this->config->mail_check) {
+                            $user->status = USER_STATUS_CHECK;
+                            $user->save();
+
+                            // send email
+                            $mailer = new \Phalcon\Mailer\Manager($this->config->mail->toArray());
+                            $message = $mailer->createMessage()
+                                ->to($user->user_email, 'Mr. New User')
+                                ->subject('Sign up mail')
+                                ->content('This is sent from Phalcon-CMS.');
+                            $message->cc('tessei.kaibara@gmail.com');
+                            $message->bcc('haranaga@puzzle-ring.jp');
+                            $message->send();
+                        }
+
                         // success
                         $this->flash->success($this->t->_('Success signup'));
                         return $this->dispatcher->forward([C=>'user',A=>'signup_done']);

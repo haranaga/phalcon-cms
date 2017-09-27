@@ -18,6 +18,7 @@ define('SITE_STATUS_VALID', 1);
 // user status
 define('USER_STATUS_INVALID', 0);
 define('USER_STATUS_VALID', 1);
+define('USER_STATUS_CHECK', 10);
 
 // user role
 define('USER_ROLE_ADMIN', 'user_role_admin');
