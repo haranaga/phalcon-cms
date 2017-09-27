@@ -33,6 +33,8 @@ return new \Phalcon\Config([
     ],
 
     'cookie' => 'phcms',
+
+    // encrypt seed
     'crypt' => 'jS8nE{D$?A<uav]Kr;7M6cV%(_&xhX>Ny',
 
     // Mysql option
