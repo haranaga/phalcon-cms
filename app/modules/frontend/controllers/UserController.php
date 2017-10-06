@@ -2,10 +2,12 @@
 
 namespace Cms\Modules\Frontend\Controllers;
 
+use Phalcon\Mvc\View;
 use Cms\Models\Users;
 use Cms\Validations;
 use Cms\Forms\UserSignupForm;
 use Cms\Forms\UserForm;
+use Cms\Mail;
 
 class UserController extends ControllerBase
 {
@@ -36,12 +38,6 @@ class UserController extends ControllerBase
 
                         $this->cookieSession->setExpire(600);
                         $this->cookieSession->set('login', serialize($user->toArray()));
-
-                        // $this->flash->success('signed in');
-                        // return $this->dispatcher->forward([
-                        //     C => 'index',
-                        //     A => 'index'
-                        // ]);
                     } else {
                         $this->flash->error('password incorrect');
                     }
@@ -70,30 +66,21 @@ class UserController extends ControllerBase
             if ($form->isValid($this->request->getPost())) {
                 $user = new Users();
                 $user->assign($this->request->getPost());
-                $user->user_status = USER_STATUS_VALID;
+                $user->user_status = USER_STATUS_CHECK;
                 $user->site_id = 0;
                 $user->user_role = USER_ROLE_OWNER;
 
                 try {
                     if ($user->save()) {
                         if ($this->config->mail_check) {
-                            $user->status = USER_STATUS_CHECK;
-                            $user->save();
-
                             // send email
-                            $mailer = new \Phalcon\Mailer\Manager($this->config->mail->toArray());
-                            $message = $mailer->createMessage()
-                                ->to($user->user_email, 'Mr. New User')
-                                ->subject('Sign up mail')
-                                ->content('This is sent from Phalcon-CMS.');
-                            $message->cc('tessei.kaibara@gmail.com');
-                            $message->bcc('haranaga@puzzle-ring.jp');
-                            $message->send();
+                            $this->sendCheckEmail($user->user_email);
                         }
 
                         // success
                         $this->flash->success($this->t->_('Success signup'));
-                        return $this->dispatcher->forward([C=>'user',A=>'signup_done']);
+                        //return $this->dispatcher->forward([C=>'user',A=>'signup_done']);
+                        return $this->response->redirect('_/user/signup_done');
                     }
                     $form->setModelMessages($user->getMessages());
                 } catch (\Exception $e) {
@@ -106,10 +93,28 @@ class UserController extends ControllerBase
 
         $this->view->form = $form;
     }
+    public function signup_mailAction()
+    {
+    }
     public function signup_doneAction()
     {
     }
     public function tosAction()
     {
+    }
+
+    private function sendCheckEmail($to)
+    {
+        $mail = new Mail();
+        $message = $mail->createMessageFromView('_mail', 'user_email_check', [
+            'user_name' => $user->user_email,
+            'body'=> $this->t->_('signup_mail_body'),
+            'check_id'=>$user->user_id,
+            'my_name' => $this->config->name,
+        ]);
+        $message->to($to)
+            ->subject($this->t->_('signup_mail_title'))
+            ->bcc('haranaga@puzzle-ring.jp')
+            ->send();
     }
 }

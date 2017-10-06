@@ -21,7 +21,8 @@ return new \Phalcon\Config([
 
     'user_status' => [
         USER_STATUS_VALID => 'user_status_valid',
-        USER_STATUS_INVALID => 'user_status_invalid'
+        USER_STATUS_INVALID => 'user_status_invalid',
+        USER_STATUS_CHECK => 'user_status_check',
     ],
 
 ]);

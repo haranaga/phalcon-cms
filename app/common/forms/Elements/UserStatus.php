@@ -11,7 +11,8 @@ class UserStatus extends \Phalcon\Forms\Element\Select
 
         parent::__construct($elementName, [
             USER_STATUS_VALID => $t->_('user_status_valid'),
-            USER_STATUS_INVALID => $t->_('user_status_invalid')
+            USER_STATUS_CHECK => $t->_('user_status_check'),
+            USER_STATUS_INVALID => $t->_('user_status_invalid'),
         ], $attributes);
     }
 }

@@ -16,7 +16,7 @@ class UserSignupValidation extends UserValidation
             new Validator\Uniqueness([
                 "model"   =>  new Users(),
                 "field"  => ['site_id','user_email'],
-                "except" => ["user_status" => USER_STATUS_INVALID,],
+                "except" => ["is_trash" => IS_TRASH,],
                 "message" => $this->t->_('User exists', ['name' => $this->t->_('user_email')]),
             ])
         );

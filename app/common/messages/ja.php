@@ -1,4 +1,6 @@
 <?php
+use Phalcon\Validation\Validator\Email;
+
 $messages =[
     // For Debug
     'lang' => 'ja-jp',
@@ -18,6 +20,7 @@ $messages =[
     'user_status' => 'ステータス',
     'user_status_valid' => '有効',
     'user_status_invalid' => '無効',
+    'user_status_check' => 'メール未認証',
     'user_role' => 'アカウント権限',
     'user_role_admin' => '管理者',
     'admin' => '管理者',
@@ -54,6 +57,10 @@ $messages =[
     'action_save' => '保存',
     'action_recover' => '復旧',
 
+    // Email
+    'signup_mail_title' => 'アカウント登録確認',
+
+
     // Messages, Titles
     'All' => '全',
     'Already have an account?' => 'すでに登録済みの方',
@@ -82,4 +89,6 @@ $messages =[
     'Site domain exists' => '%name%はすでに登録されています',
     'Page' => '%name%ページ',
     'Total' => '全%name%件',
+
+    'We sent a e-mail to the address, Please check your mail and access to URL in the mail.' => 'メールアドレスにメールを送信しました。<br>メール内にあるURLにアクセスして、アカウントを有効にしてください',
 ];
